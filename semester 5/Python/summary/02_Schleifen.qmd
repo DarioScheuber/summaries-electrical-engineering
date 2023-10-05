@@ -1,0 +1,131 @@
+# Schleifen
+
+## IF-Statement
+
+Das `if`-Statement wird ausgeführt soblad das die condition true ist
+
+``` python
+  if condition == 10:           #Wenn condition gleich 
+                                #10 ist dann
+    print("Text1","Text2")      #Text1 Text2
+```
+
+| Vergleichsoperator | Bedeutung      |
+|--------------------|----------------|
+| ==                 | ist gleich?    |
+| !=                 | nicht gleich?  |
+| \>                 | grösser als    |
+| \<                 | kleiner als    |
+| \>=                | grösser gleich |
+| \<=                | kleiner gleich |
+
+## if - elif - else Statement
+
+Bei mehreren `if`-Statements wird jedes einzelne überprüft auch wenn eines `True` war. Das `elif`- oder `else`-Statement wird nur ausgeführt, wenn das `if`-Statement `false` war.
+
+``` python
+  if x < 10:
+    print("x kleiner als 10")
+  elif x > 10:
+    print("x grösser als 10")
+  else:                         #Wenn kein Statement True ist
+    print("x ist 10")
+```
+
+## Verknüpfen von Bedingungen
+
+``` python
+  x = True
+  y = False
+  z = x and y                   #False
+  z = x or y                    #True
+  z = not y                     #True
+```
+
+![](image/and-or-not.png){fig-alt="And-Or-Not Verknüpfungen"}
+
+## Ablaufdiagramm / Flussdiagramm
+Ein Ablauf- oder Flussdiagramm kann verwendet werden den Prozess /Ablauf eines Algorithmus, Programms, etc. graphisch zu beschreiben.
+
+
+| Baublock                    | Diagrammzeichen                    |
+|-----------------------------|------------------------------------|
+| Terminal/Terminator         | ![](image/Terminal.png)            |
+| Prozess                     | ![](image/Prozess.png)             |
+| Entscheidung                | ![](image/Entscheidung.png)        |
+| Datensatz oder Input/Output | ![](image/Datensatz.png)           |
+| Flussrichtungspfeil         | ![](image/Flussrichtungspfeil.png) |
+| Off-Page-Konnektor/Referenz | ![](image/Off-Page.png)            |
+
+## While-Schleife
+Die `while` Schleife kann verwendet werden, um einen Code Block mehrfach auszuführen, bis eine bestimmte Bedingung eingetreten ist.
+``` python
+  i = 0
+  while i < 10:
+    print(i)                    #0\n 1\n 2\n 3\n 4\n ...
+    i += 1
+
+  while True:                   #Endlosschleife
+    print("Endlosschleife")     
+```
+### continue
+\textbf{`continue`}: Wenn continue aufgerufen wird, wird der \textbf{Rest} des Code Blockes \textbf{übersprungen} und es beginnt ein neuer Durchlauf der Schleife
+
+### break
+\textbf{`break`}: Wenn break aufgerufen wird, wird die \textbf{Schleife} sofort \textbf{beendet}.
+
+## For-Schleife
+For in Python wird etwas anders behandelt als in anderen Programmiersprachen. In Python wird for verwendet, um \textbf{alle Elemente einer Sequenz} zu bearbeiten. 
+
+``` python
+  for elem in range(10):
+    print(elem)                 #0\n 1\n 2\n 3\n 4\n ... 
+
+  for c in "Word":
+    print(c)                    #W\n o\n r\n d\n
+
+  for i in [1,3,5]:
+    print(i)                    #1\n 3\n 5\n   
+```
+### range
+\textbf{`range`}: produziert eine Sequenz von (default 0) bis zu dem eingegebenen Wert (10). 
+``` python
+  list(range(10))               #0,1,2,....9
+```
+
+### enumerate
+\textbf{`enumerate`} gibt einen Index einer Iterable. `enumerate` liefert dazu ein Tuple (zwei Werte). Diese Werte sind index und Element von einer Iterablen. 
+``` python
+for i,elem in enumerate("word"):
+    print(f"{i}th letter is a {elem}")
+    #0th letter is a w
+    #1th letter is a o
+    #2th letter is a r
+    #3th letter is a d
+```
+### zip
+\textbf{`zip`} um gleichzeitig zwei oder mehr gleichlange Listen zu iterieren. `zip` aggregiert Element für Element von mehreren Iterables und gibt jeweils ein Tuple mit einem Element von allen Iterables zurück.
+![](image/zip.png){fig-alt="zip Iteration"}
+``` python
+for elem1,elem2 in zip([1,2,3,4,5,6],"hello"):
+    print(elem1,elem2)
+    #1 h
+    #2 e
+    #3 l
+    #4 l
+    #5 o
+```
+::: callout-important
+### zip-Länge
+zip gibt nur so lange Tuples aus, wie alle Iterables Elemente haben.
+:::
+
+### zip und enumerate
+``` python
+for idx, tup in enumerate(zip(word_1,word_2)):
+    print(f"{idx}th letters of words are: {tup[0]} \t {tup[1]}")
+```
+::: callout-important
+### zip und enumerate
+Wenn zip und enumerate gleichzeitig angewendet werden, werden leider NICHT 3 Werte zurückgegeben,  sondern 1 Index und 1 Tuple (2 Werte) zurückgegeben.
+:::
