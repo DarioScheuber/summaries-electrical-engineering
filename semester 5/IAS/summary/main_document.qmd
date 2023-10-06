@@ -1,6 +1,6 @@
 ---
-title: "IAS"
-subtitle: "Zusammenfassung"
+title: "Industrielle Automatisierungssysteme"
+subtitle: "Automatisierung"
 
 author: "Dario Scheuber"
 date: now
@@ -20,7 +20,7 @@ format:
 source:
   github:
     title: "Quelldateien" 
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    link: "https://github.com/DarioScheuber/summaries-electrical-engineering"
 
 # [DOCUMENT CONFIGURATION] ============================
 geometry: 
