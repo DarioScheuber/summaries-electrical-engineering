@@ -1,0 +1,104 @@
+# Funktionen
+
+Funktionen sind Unterprogramme, die aus dem Programm aufgrufen werden können, um danach das Programm fortzusetzen.
+
+![](image/Funktionsaufbau.png){fig-alt="Funktionsaufbau"}
+
+Der Gültigkeitsbereich, auch \textbf{Scope} genannt, beschreibt in welchem Bereich Variablen, Funktionen, etc. ersichtlich sind.
+
+## Funktionsaufruf
+
+``` python
+    #Main programm
+    x = 10
+    y = foo(x)
+
+    #Funktion
+    def foo(n):
+        return n *10
+```
+
+## Funktionsaufruf mit default Values
+
+Parameter können auch mit Default Werten versehen werden. Dies macht die betroffenen Parameter \textbf{optional}. Heisst wenn sie nicht beim Aufruf angegeben werden, wird der Default -- Wert verwendet.
+
+``` python
+    #Main programm
+    x = 10
+    y = foo(x)          #gleiche auswirkung wie unten
+    y = foo(n=x)        #
+
+    #Funktion
+    def foo(n,word = "hello"):
+        print(word)
+        return n *10
+```
+
+## Funktionsaufruf mit Typehints
+
+Zudem ist es möglich, dem Interpreter zu sagen, was man für einen Datentyp man bei den verschiedenen Funktionsparametern erwartet. Dies kann man mit \textbf{:datatype} definieren
+
+``` python
+    #Main programm
+    x = 10
+    y = foo(x)          #gleiche auswirkung wie unten
+    y = foo(n=x)        #
+
+    #Funktion
+    def foo(n:int,word:str = "hello"):
+        print(word)
+        return n *10
+```
+
+::: callout-important
+### NICHT FORCIEREND
+
+Diese Type Hints sind NICHT FORCIEREND. Es sind jeweils nur Hinweise für den Programmierer. Ich kann den Variablen trotzdem noch andere Datentypen zuweisen, ohne dass es Fehler angezeigt wird. Der Code kann sogar funktionieren.
+:::
+
+\textbf{Rückgabewerte} können auch mit einem Type Hint `->int` versehen werden.
+
+``` python
+def add_binary(a:int, b:int) -> str:
+    binary_sum = bin(a+b)[2:]
+    return binary_sum           #Wird als String zurückgegeben
+```
+
+## Docstring
+
+Funktionen, welche man definiert, sollten \textbf{immer dokumentiert} sein, damit man auch später noch weiss, was die Funktion machen sollte. Dies ist vor allem dann wichtig wenn man komplexere Programme mit vielen Funktionen schreibt. Generell dokumentiert man Funktionen mit einem DocString nach dem Header, nach folgender Konvention.
+
+``` python
+def calc_rect_area(l:float, w:float):
+    """ 
+    Calculate the Rectangle Area from a rectangle with width w and length l.
+       Parameters: 
+        l (float) : Lenght of the Rectangle
+        w (float) : Width of the Rectangle
+       Returns:
+        rect_area (float) : rectangle area (l*w)
+    """
+    rect_area = l * w
+    return rect_area
+```
+
+::: callout-tip
+### Docstring
+
+Mit `help(my_func)` kann die Docstring abgefragt werden, zusätzlich sind diese mit dem Mouse hover sichtbar
+:::
+
+## Rekursion
+
+Es ist möglich eine Funktion von innerhalb derselben Funktion aufzurufen. Dies nennt sich \textbf{Rekursion}. (sich selbst aufrufen)
+
+``` python
+def recursion(x):
+    # End Condition
+    if condition:
+        return fixed_value
+    
+    # Recursive Condition
+    if condition:
+        return recursion(x-1)
+```

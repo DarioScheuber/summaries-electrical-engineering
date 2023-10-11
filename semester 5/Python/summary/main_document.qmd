@@ -53,4 +53,5 @@ To edit the title page, edit `before-body.tex` in the `config` folder.
 <!-- [Chapters] -->
 {{< include 01_Variablen.qmd >}}
 {{< include 02_Schleifen.qmd >}}
+{{< include 03_Funktionen.qmd >}}
 
