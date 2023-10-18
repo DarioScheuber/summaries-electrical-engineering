@@ -164,4 +164,23 @@ Strings werden mit folgender notations Indexiert: \<Stringname\>\[\<start\>:\<st
   print(word[-5:])          # Test
   print(word[5:-1])         # this is a Tes
   print(word[::-1])         #tseT a si siht olleH
+  print("Hello" in word)    #True
+  print(leng("Test"))       #4
+```
+### String Funktionen
+Alle Strings unterstützen auch einige \textbf{String – eigene Funktionen}.
+
+``` python
+name = "Wolfgang"
+# Gross und Kleinschreiben
+print(name.upper())         #WOLFGANG
+print(name.lower())         #wolfgang
+
+string_path = "//path//to//a//file//deep//in//a//folder"
+string_path.split("//")
+#['', 'path', 'to', 'a', 'file', 'deep', 'in', 'a', 'folder']
+last_folder = string_path.split("//")[-1]
+#'folder'
+string_path.count("//")     #8
+
 ```
