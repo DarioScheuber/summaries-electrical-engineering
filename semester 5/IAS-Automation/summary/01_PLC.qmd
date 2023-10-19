@@ -3,7 +3,7 @@
 ## Data types
 
 | Data type | Lower bound              | Upper bound             | Memory space |
-|-----------------|--------------------|-------------------|-----------------|
+|------------------|-------------------|------------------|------------------|
 | BYTE      | 0                        | 255                     | 8 bit        |
 | WORD      | 0                        | 65535                   | 16 bit       |
 | DWORD     | 0                        | 4294967295              | 32 bit       |
@@ -25,6 +25,26 @@ VAR
     var :INT:= 10; 
 END_VAR
 ```
+
+## Vergleichsoperatoren
+
+| Funktion            | Operator |
+|---------------------|----------|
+| Gleichheit          | =        |
+| Grösser oder gleich | \>=      |
+| Grösser als         | \>       |
+| Kleiner oder gleich | \<=      |
+| Kleiner als         | \<       |
+| Ungleichheit        | \<\>     |
+
+## Bitoperatoren
+
+| Funktion      | Operator |
+|---------------|----------|
+| bitweisen AND | AND      |
+| bitweisen NOT | NOT      |
+| bitweisen OR  | OR       |
+| bitweisen XOR | XOR      |
 
 ## Array
 
@@ -104,6 +124,22 @@ END_VAR
 F_Summe := nVar1 + nVar2;
 ```
 
+## Aufzählungen / Enumerationen
+
+Eine Enumeration oder Aufzählung ist ein benutzerdefinierter Datentyp, der sich aus einer kommaseparierten Reihe von Komponenten, auch Enumerationswerte genannt, zusammensetzt, um benutzerdefinierte Variablen zu deklarieren. Die Deklaration einer Enumeration nehmen Sie in einem DUT-Objekt vor, das Sie über den Befehl \textbf{Hinzufügen > DUT} im Kontextmenü des SPS-Projektbaums im Projekt anlegen. \### Beispiel
+
+``` scl
+TYPE En_States :
+(
+    eInit := 0,
+    eAuto := 1,
+    eManu := 2
+);
+END_TYPE
+```
+
+\textbf{Instanzierung im main:} `en_State := En_States;`
+
 ## Objekt Funktionsbaustein
 
 Ein Funktionsbaustein ist eine POU, die bei der Ausführung einen oder mehrere Werte liefert. Die Werte der Ausgabevariablen und der internen Variablen bleiben nach einer Ausführung bis zur nächsten erhalten. Dies bedeutet, dass der Funktionsbaustein bei mehrmaligem Aufruf mit denselben Eingabevariablen nicht unbedingt dieselben Ausgabewerte liefert.
@@ -129,8 +165,9 @@ END_FOR;
 ```
 
 ## WHILE-Schleife
-Die WHILE-Schleife kann benutzt werden wie die FOR-Schleife, mit dem Unterschied, dass die Abbruchbedingung ein beliebiger boolscher Ausdruck sein kann. Das heißt, man gibt eine Bedingung an, die, wenn sie zutrifft, die Ausführung der Schleife zur Folge hat.
-`WHILE <Boolescher Ausdruck> DO`
+
+Die WHILE-Schleife kann benutzt werden wie die FOR-Schleife, mit dem Unterschied, dass die Abbruchbedingung ein beliebiger boolscher Ausdruck sein kann. Das heißt, man gibt eine Bedingung an, die, wenn sie zutrifft, die Ausführung der Schleife zur Folge hat. `WHILE <Boolescher Ausdruck> DO`
+
 ``` scl
 WHILE Zaehler<>0 DO
     Var1 := Var1*2;
@@ -139,8 +176,9 @@ END_WHILE
 ```
 
 ## WHILE-Schleife
-Die REPEAT-Schleife unterscheidet sich von den WHILE-Schleifen dadurch, dass die Abbruchbedingung erst nach dem Ausführen der Schleife überprüft wird. Das hat zur Folge, dass die Schleife mindestens einmal durchlaufen wird, egal wie die Abbruchbedingung lautet.
-`UNTIL <Boolescher Ausdruck>`
+
+Die REPEAT-Schleife unterscheidet sich von den WHILE-Schleifen dadurch, dass die Abbruchbedingung erst nach dem Ausführen der Schleife überprüft wird. Das hat zur Folge, dass die Schleife mindestens einmal durchlaufen wird, egal wie die Abbruchbedingung lautet. `UNTIL <Boolescher Ausdruck>`
+
 ``` scl
 REPEAT
     Var1 := Var1*2;
@@ -190,4 +228,144 @@ IF timer1.Q THEN
     timer1.IN := FALSE;
     timer1();   
 END_IF
+```
+
+## ST-Anweisung CASE (switch case)
+
+Die CASE-Anweisung verwenden Sie, um mehrere bedingte Anweisungen mit derselben Bedingungsvariablen in einem Konstrukt zusammenzufassen.
+
+Syntax:
+
+``` scl
+    CASE <Var1> OF
+    <value1>:<instruction1>
+    <value2>:<instruction2>
+    <value3, value4, value5>:<instruction3>
+    <value6 ... value10>:<instruction4>
+    ...
+    <value n>:<instruction n>
+    {ELSE <ELSE-instruction>}
+    END_CASE;
+```
+
+::: callout-note
+```         
+Der Abschnitt innerhalb der geschweiften Klammer {} ist optional.
+
+Abarbeitungsschema einer CASE-Anweisung:
+- Wenn die Variable <Var1> den Wert <<value i> hat, wird die Anweisung <instruction i> ausgeführt.
+- Wenn die Variable <Var1> keinen der angegebenen Werte hat, dann wird die <ELSE-instruction> ausgeführt.
+- Wenn für mehrere Werte der Variablen dieselbe Anweisung auszuführen ist, können Sie diese Werte durch Kommata getrennt hintereinander schreiben.
+```
+:::
+
+### Beispiel
+
+``` scl
+    CASE nVar OF 
+        1,5 : bVar1 := TRUE; 
+            bVar3 := FALSE; 
+
+        2 : bVar2 := FALSE; 
+            bVar3 := TRUE; 
+
+    10..20 : bVar1 := TRUE; 
+            bVar3 = TRUE; 
+    ELSE 
+            bVar1 := NOT bVar1; 
+            bVar2 := bVar1 OR bVar2; 
+    END_CASE;
+```
+
+## Statemaschine Beispiel
+
+![](image/Statemaschineflussdiagram.png){fig-align="center" width="352" height="270"}
+
+### Inputs and Outputs
+
+``` scl
+    VAR_GLOBAL
+        bLamp : BOOL;
+        bButtonLamp : BOOL;
+        bButtonManAuto : BOOL;
+    END_VAR
+```
+
+### States
+
+``` scl
+    TYPE En_States :
+    (
+        eUndefined := 0,
+        eInit ,
+        eAuto ,
+        eManu 
+    );
+    END_TYPE
+```
+
+### Main
+
+``` scl
+    PROGRAM MAIN
+    VAR
+        enState : En_States := En_States.eInit;
+        enStateOld : En_States;
+        enStateNext : En_States;
+        fb_Blinker : FB_Blinker;
+    END_VAR
+
+    CASE enState OF
+        (*-----------------undefined state-----------------*)
+        En_States.eUndefined:
+        
+        ;
+        (*-----------------init state-----------------*)
+        En_States.eInit:
+            //Entry action
+            //Cyclic action
+            IF GVL_IO.bButtonManAuto = TRUE THEN
+                enState := En_States.eAuto;
+            ELSE
+                enState := En_States.eManu;
+            END_IF  
+            //Exit action
+        ;
+        (*-----------------auto state-----------------*)
+        En_States.eAuto:
+            //Entry action
+            IF enState <> enStateOld THEN
+                GVL_IO.bLamp := TRUE;
+            END_IF
+            //Cyclic action
+            fb_Blinker(bIn := GVL_IO.bLamp, bOut => GVL_IO.bLamp);
+            IF GVL_IO.bButtonManAuto = FALSE THEN
+                enStateNext := En_States.eManu;
+            END_IF
+            //Exit action
+        ;
+        (*-----------------manu state-----------------*)
+        En_States.eManu:
+            //Entry action
+            IF enState <> enStateOld THEN
+                GVL_IO.bLamp := FALSE;
+            END_IF
+            //Cyclic action
+            IF enState <> enStateOld THEN
+                GVL_IO.bButtonLamp := FALSE; //Achtung bei echten Button braucht es edge detection
+                GVL_IO.bLamp := NOT(GVL_IO.bLamp);
+            END_IF
+            
+            IF GVL_IO.bButtonManAuto THEN
+                enStateNext := En_States.eAuto;
+            END_IF
+            //Exit action
+        ;
+        
+    ELSE
+        enState := En_States.eUndefined;
+    END_CASE
+
+    enStateOld := enState;
+    enState := enStateNext;
 ```
