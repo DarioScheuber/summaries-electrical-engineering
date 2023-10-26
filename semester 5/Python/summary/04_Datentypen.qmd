@@ -1,5 +1,7 @@
-# Datentypen 
+# Datentypen
+
 ## F-Strings
+
 Wenn Sie bei normalen Strings Variablen einfügen wollen müssen Sie dies mühsam mit der String-Concats machen. Zusätzlich erlauben F-Strings das spezifizieren des gewünschten Formates. Die definition von F-Strings ist auch \textbf{schneller}.
 
 ``` python
@@ -9,7 +11,8 @@ print("string plus ",variabel)
 
 f_string = f"string plus {variabel}"
 print(f"string plus {variabel}")
-``` 
+```
+
 ::: callout-tip
 Das kann auch mit mehreren Variablen gemacht werden
 :::
@@ -27,28 +30,37 @@ print(f"{11:x}")        #b
 #oktal
 print(f"{11:o}")        #13
 ```
+
 ## Sequenzen
+
 \textbf{unveränderbare Sequenzen (non-mutable)}
-- Zeichenketten (Strings)
-- Tuples 
-    
+
+-   Zeichenketten (Strings)
+
+-   Tuples
+
 Eigenschaften:
-- keine neuen Elemente einfügbar
-- Werte von Elementen nicht veränderbar
+
+-   keine neuen Elemente einfügbar
+
+-   Werte von Elementen nicht veränderbar
 
 \textbf{Veränderbare Sequenzen (mutable)}
-- Listen
+
+-   Listen
 
 Eigenschaften:
-- neue Elemente können eingefügt werden
-- Elemente können entfernen werden
-- Werte von Elementen können verändert werden 
+
+-   neue Elemente können eingefügt werden
+
+-   Elemente können entfernen werden
+
+-   Werte von Elementen können verändert werden
 
 ### Tuples
-Tuples sind eine geordnete Sequenz von Elementen und verfügt deswegen über alle standard Sequenz-Funktionalitäten. Ein Tuple wird mit normalen Klammern ( ) definiert.
-::: callout-note
-Ein Tuple Elemente von verschiedenen Datentypen besitzen. Klammern sind optional.
-:::
+
+Tuples sind eine geordnete Sequenz von Elementen und verfügt deswegen über alle standard Sequenz-Funktionalitäten. Ein Tuple wird mit normalen Klammern ( ) definiert. ::: callout-note Ein Tuple Elemente von verschiedenen Datentypen besitzen. Klammern sind optional. :::
+
 ``` python
 x = 1
 my_tuple = (1,2,4,"word",x)
@@ -64,12 +76,14 @@ len(my_tuple)                   #5
 
 my_tup = 1,2                    #Klammern optional
 x,y = my_tup                    #x=1 y=2
-
 ```
+
 ::: callout-important
 Aber Achtung Tuples sind nicht veränderbar!
 :::
+
 Falls jedoch \textbf{nicht alle Werte eines Tuples benötigt} werden, kann die \textbf{Tuple Entpackung} angewendet werden.
+
 ``` python
 elem1 , *rest = my_tuple
 print(elem1)                    #1
@@ -80,10 +94,13 @@ print(first)                    #1
 print(middle)                   #[2, 4, 'word’] 
 print(last)                     #1
 ```
+
 ::: callout-important
-Hierbei sind die \textbf{Variabel Namen frei wählbar}, eine muss lediglich mit * beginnen.
-::: 
+Hierbei sind die \textbf{Variabel Namen frei wählbar}, eine muss lediglich mit \* beginnen.
+:::
+
 ### Listen
+
 Eine Liste ist eine \textbf{veränderbare, geordnete Sequenz von Elementen.} Eine Liste kann einfach mit `[]` definiert werden.
 
 ``` python
@@ -95,11 +112,13 @@ for elem in my_list:            #1 2 String 2.0
 my_list[0] = "a"                #['a', 2, 'String', 2.0]
 my_list[0:2] = [30,34]          #[30, 34, 'String', 2.0]
 ```
+
 ::: callout-important
 Die Elemente in einer Liste können auch verschiedene Datentypen aufweisen.
-::: 
+:::
 
 #### Listen Funktionen
+
 ``` python
 my_list = [1,2,3,4]
 
@@ -121,39 +140,47 @@ my_list.remove(1)               #my_list=["a",2,3,4,5,2,3]
 #alle Einträge einer Liste löschen
 my_list.clear()
 ```
+
 ::: callout-important
 Wenn value bei `.remove()` nicht in der Liste ist, gibt es einen Value_Error
 :::
 
 Wenn eine \textbf{Liste nur Zahlen} (`floats` und `ints`) beinhaltet kann diese ebenfalls mit `.sort()` der Grösse nach aufsteigen sortiert werden. Oder eine Liste \textbf{(Datentyp unabhängig)} kann mit `.reverse()` umgekehrt werden.
+
 ``` python
 my_list = [5,3.0,2,1,10,30]
 my_list.sort()              #[1, 2, 3.0, 5, 10, 30]
 my_list.reverse()           #[30, 10, 5, 3.0, 2, 1]
 ```
 
-#### List Copy by Reference 
+#### List Copy by Reference
+
 ``` python
 my_list = [1,2,3]
 my_list_2 = my_list
 my_list_2[2] = 4
 print(my_list)              #[1, 2, 4]
 ```
+
 ::: callout-important
-### Copy by Reference 
+### Copy by Reference
+
 Mutables werden mit Copy by Refernce kopiert das heisst das `my_list2` mithilfe eines Zeigers auf die Speicherstelle von `my_list` zeigt. Wenn `my_list2` geändert wird, ändert sich auch `my_list` und umgekehrt!
 :::
 
 Um richtig zu Kopieren gibt es die `.copy()` Methode.
+
 ``` python
 my_list_2 = my_list.copy()
 my_list_2[2] = 5
 ```
+
 ::: callout-note
 Die `.copy()` Methode erzeugt ein neues Objekt im Speicher und weist die neue Variabel darauf zu.
 :::
 
-#### Mutable Default Values 
+#### Mutable Default Values
+
 ``` python
 def add_to_list(item, list_to_add:list=None):
     if list_to_add is None:
@@ -162,12 +189,15 @@ def add_to_list(item, list_to_add:list=None):
 
     return list_to_add
 ```
+
 ::: callout-important
 Wenn keine Liste übergeben wird, wird dies Detektiert. Darauf wird eine neue (leere) Liste erstellt.
 :::
 
-#### Listen und Schleifen 
+#### Listen und Schleifen
+
 Python unterstützt die sogenannte \textbf{List-Comprehension}, welche es erlaubt in einem 1-Zeiler Listen nach bestimmten Regeln zu erstellen.
+
 ``` python
 #List erstellen mit Schleifen
 my_list_2 = [i for i in range(10)]
@@ -176,6 +206,163 @@ my_list = [my_func(elem) for elem in my_list_2]
 #List erstellen mit Bedingungen
 my_list = [elem**2 if elem%2==0 else elem for elem in my_list_2]
 ```
-[\textcolor{green}{f(x)} if \textcolor{orange}{condition} else \textcolor{red}{g(x)} for x in sequence]
+
+\[\textcolor{green}{f(x)} if \textcolor{orange}{condition} else \textcolor{red}{g(x)} for x in sequence\]
 
 Heisst es wird \textcolor{green}{Funktion f(x)} auf jedes Element der Sequenz angewendet wenn die \textcolor{orange}{Bedingung} wahr ist. Ansonsten wird die \textcolor{red}{Funktion g(x)} angewendete.
+
+## Sets
+
+Sets sind \textbf{ungeordnete} Listen, welche \textbf{jedes Element nur einmal beinhalten.} Die Items in einem Set sind \textbf{unveränderbar}, jedoch kann man Elemente \textbf{hinzufügen und entfernen}.
+
+Syntax: `{}`
+
+``` python
+    my_set = {"apple","banana", "pear"}
+
+    #Hinzufügen .add()
+    my_set.add("pineapple")
+    #{'banana', 'pineapple', 'pear','apple'}
+
+    #Bei mehrfach hinzufügen passiert nichts!
+    my_set.add("pineapple")
+
+    #Entfernen .remove()
+    my_set.remove("apple")
+    #{'banana', 'pear', 'pineapple'}
+```
+
+::: callout-important
+Wenn das zu entfernende Item nicht vorhanden ist, gibt es eine KeyError. Bei mehrfach hinzugefühen des gleichen Elementes, passiert nichts.
+:::
+
+### Vergleich von zwei Sets
+
+B ist ein \textbf{Subset} von A (B $\in$ A)
+
+A ist ein \textbf{Superset} von B (A $\subset$ B)
+
+``` python
+    my_set_A.issuperset(my_set_B)
+    my_set_B.issubset(my_set_A)
+```
+
+## Dictionaries
+
+Ein Dictionary, kurz dict, ist eine \textbf{veränderbare (mutable)} Datenstruktur, welche das \textbf{Speichern} von \textbf{Key-Value-Pairs} erlaubt. Anders als bei Listen, werden hier die Werte (Values) nicht mit Indices sondern mit \textbf{Keys angewählt.} Beim Dictionary wie auch beim Set sind die Keys \textbf{einzigartig (unique).}
+
+Syntax: `{:}`, `my_dict = {"key1":"value"}`
+
+``` python
+    my_dict = {"key1":"value"}
+    my_dict["key1"]             #'value'
+```
+
+![](image/list-and-dict.png){fig-align="center" width="382"}
+
+::: callout-note
+Die Keys sowohl Strings wie auch Ints oder Floats sein. Jedoch sollten in der Regel Strings als Keys verwendet werden.
+:::
+
+### Hinzufügen von Elementen in Dicts
+
+``` python
+    my_dict["a"] = "value1"
+    my_dict["b"] = "value2"
+    my_dict["a"] = "value3"     #überschreiben von key a
+```
+
+### nested dict
+
+``` python
+    my_dict = {"John":{
+        "Age": 48,
+        "Gender": "m",
+        "Profession":"Carpenter"
+        }
+    }
+
+    for key in my_dict:
+        print(key)                  #John
+
+    for key,value in my_dict.items():
+        print(f"{key}: {value}")    #John: {'Age': 48, ...}
+
+    "John" in my_dict.keys()        #True
+    "Age" in my_dict["John"].keys() #True
+```
+
+Falls gleichzeitig geprüft werden soll: ob ein Key existiert, was für einen Wert dieser hat, und falls der Key nicht existiert dieser mit einem Default Wert erstell werden soll. Gibt es dafür die `set_default()` Methode:
+
+`print(my_dict.setdefault("Robert",{}))`
+
+::: callout-note
+### `set_default()`
+
+Gibt den Wert von «Robert» zurück, erstellt dieses Key-Value-Pair mit Default Value falls nicht vorhanden
+:::
+
+### .pop(key, default_return)
+
+Die .pop(key) Methode kann verwendet werden, um den Wert eines Keys zu erhalten und diesen Key zu löschen.
+
+``` python
+    my_dict.pop("Robert") 
+    my_dict.pop("Klaus","Key nicht vorhanden")
+    #'Key nicht vorhanden'
+```
+
+### Pretty Print
+
+In Python gibt es Module (vorgeschriebener Code) welcher importiert werden kann. Eines dieser Module ist das PrettyPrint Modul (pprint), welches eigene print() Funktionen zur Verfügung stellt.
+
+Einer dieser Funktionen ist das «schöne» Printen von Dictionaries. So kann zB genau spezifiziert werden:
+
+-   \textbf{Wie viele Levels} eines Dictionaries überhaupt geprinted werden sollen (\textcolor{blue}{depth})
+
+-   \textbf{Wie viel Leerzeichen Abstand} zwischen Levels geprinted werden soll (\textcolor{blue}{indent})
+
+``` python
+    import pprint
+    pp = pprint.PrettyPrinter(depth=1, indent = 3)
+    pp.pprint(my_dict)
+```
+
+### Dict-Comprehension
+
+`{key:value for elem in iterable}` Hierbei ist oft so dass sowohl key wie auch value eine \textbf{Funktion von f(elem)} sind.
+
+``` python
+my_dict_2 ={f"Key_{elem}":f"Value_{elem}" for elem in range(10)}
+
+"""
+{
+'Key_0': 'Value_0', 'Key_1': 'Value_1', 'Key_2': 'Value_2’,
+. . . 
+'Key_9': 'Value_9’
+}
+"""
+```
+
+## JSON
+
+Was wenn man nun ein Dictionary in einem File abspeichern will? Dafür gibt es das \textbf{JSON Modul.} JSON steht für JavaScript Object Notation und ist ein standardisiertes File Format, um unter anderem Dictionaries abspeichern zu können. Um ein Dict abzuspeichern hat das json Modul die `.dump()` Methode.
+
+``` python
+# JSON Modul importieren
+import json
+# öffnen eines Files
+with open(file="dict.json",mode = "w+") as fp:
+# speichern (schreiben) des Dicts in das File
+    json.dump(obj = my_dict, fp = fp, indent= 4)
+```
+
+Ein Dict kann natürlich auch von einem JSON File erstellt werden. Dafür muss wiederum das JSON Modul verwendet werden. Hierzu hat das json Modul die `.load()` Methode.
+
+``` python
+# öffnen des JSON files
+with open(file="dict.json", mode = "r+") as fp:
+    # auslesen des Dicts
+    my_read_dict = json.load(fp=fp)
+pp.pprint(my_read_dict)
+```

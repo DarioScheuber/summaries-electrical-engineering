@@ -55,4 +55,3 @@ highlight-style: github
 {{< include 02_Schleifen.qmd >}}
 {{< include 03_Funktionen.qmd >}}
 {{< include 04_Datentypen.qmd >}}
-
