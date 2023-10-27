@@ -1,0 +1,114 @@
+# Kurzfassung
+## Linear Algebra
+
+### Determinante
+
+#### 2 $\times$ 2-Matrix
+
+$$
+\det(A)=\begin{vmatrix} \textcolor{BurntOrange}{a} & b \\c & \textcolor{BurntOrange}{d}\end{vmatrix} ={\textcolor{BurntOrange}{ad}-bc}
+$$
+
+#### 3 $\times$ 3-Matrix
+
+$$
+\det(A)=\begin{vmatrix} \textcolor{BurntOrange}{a} & \textcolor{NavyBlue}{b} & \textcolor{OliveGreen}{c} \\ \textcolor{OliveGreen}{d} & \textcolor{BurntOrange}{e} & \textcolor{NavyBlue}{f} \\ \textcolor{NavyBlue}{g} & \textcolor{OliveGreen}{h} & \textcolor{BurntOrange}{i} \end{vmatrix} = \textcolor{BurntOrange}{aei}+\textcolor{NavyBlue}{bfg}+\textcolor{OliveGreen}{cdh}-ceg-bdi-afh
+$$
+
+### Inverse Matrix
+
+$$
+A^{-1}=\frac{\text{adj}(A)}{\det(A)}
+$$
+
+#### 2 $\times$ 2-Matrix
+
+$$
+A^{-1}=
+\begin{bmatrix} 
+\textcolor{BurntOrange}{a} & b \\
+c & \textcolor{BrickRed}{d}
+\end{bmatrix}^{-1} =
+\frac1{\textcolor{BurntOrange}{a}\textcolor{BrickRed}{d}-bc}\cdot
+\begin{bmatrix}
+\textcolor{BrickRed}{d} & -b \\
+-c & \textcolor{BurntOrange}{a}
+\end{bmatrix}
+$$
+
+#### 3 $\times$ 3-Matrix
+
+$$
+A^{-1}=
+\begin{bmatrix} 
+a & b & c \\ d & e & f \\ g & h & i
+\end{bmatrix}^{-1} = \frac1{\det A} \cdot
+\begin{bmatrix}
+\small{ei-fh} & \small{ch-bi} & \small{bf-ce} \\
+\small{fg-di} & \small{ai-cg} & \small{cd-af} \\
+\small{dh-eg} & \small{bg-ah} & \small{ae-bd}
+\end{bmatrix}
+$$
+
+## Signal & System
+
+::: callout-important
+#### Gültigkeit End- & Anfangswertsatz
+
+End- & Anfangswertsatz gilt nur bei stabilen Systemen.
+:::
+
+### Endwertsatz
+
+#### Laplace
+
+$$
+\lim_{t\rightarrow\infty}x(t)=\lim_{s\rightarrow0} s\cdot X(s)
+$$
+
+falls $\lim_{t\rightarrow\infty} x(t)$ existiert
+
+#### Z-Transformation
+
+$$
+\lim_{k\rightarrow\infty}x[k]=\lim_{z\rightarrow1}(z-1)X(z)
+$$
+
+falls $X(z)$ nur Pole mit $\lvert z\rvert < 1$ oder bei $z=1$
+
+### Anfangswertsatz
+
+#### Laplace
+
+$$
+x(0^+)=\lim_{s\rightarrow\infty}s\cdot X(s)
+$$
+
+falls $x(0^+)$ existiert
+
+### Z-Transformation
+
+$$
+x[0]=\lim_{z\rightarrow\infty}X(z)
+$$
+
+## Transformationen
+
+### Laplace
+
+![](images/paste-17.png)
+
+### Z-Transformation
+
+![](images/paste-18.png)
+
+## Euler Approximation
+
+![](images/paste-32.png){fig-align="center" width="6cm"}
+
+$$
+\begin{split}
+x(t+h) &\approx x(t) + h\frac{dx}{dt}=x(t)+h\cdot f(x(t),u(t)) \\
+x[k+1] &\approx x[k] + h\cdot f(x[k],u[k])
+\end{split}
+$$

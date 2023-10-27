@@ -1,0 +1,222 @@
+# MATLAB
+
+## Vektoren
+
+Vektoren werden mit `[…]` deklariert. Elemente werden Spaltenweise mit einem Leerschlag `' '` oder Komma `,` eingeteilt und mit einem Semikolon `;` Reihenweise geteilt.
+
+``` matlab
+data = [1,2,3;4,5,6;7,8,9]; % same as [1 2 3;4 5 6;7 8 9];
+```
+
+::: callout-note
+### Grösse `size`
+
+Mit `size` kann die Grösse einer Variable ermittelt werden. `size` gibt als Resultat ein 1x2 Vektor zurück ($\begin{bmatrix}\text{Rows} & \text{Columns}\end{bmatrix}$)
+
+``` matlab
+>> a = 1
+>> size(a)
+     1     1  % rows, columns
+```
+:::
+
+``` matlab
+a = 1
+```
+
+$$
+\begin{bmatrix}
+1
+\end{bmatrix}\qquad \text{oder einfach}\qquad 1 
+$$
+
+Die `size`-Funktion gibt auch bei einzelnen Werte eine Grösse aus, nämlich $\begin{bmatrix}1 & 1\end{bmatrix}$
+
+``` matlab
+b = [1 2 3] % Linienvektor
+```
+
+$$
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+$$
+
+``` matlab
+c = [2;3;4] % Spaltenvektor
+```
+
+$$
+\begin{bmatrix}
+2 \\ 3 \\ 4
+\end{bmatrix}
+$$
+
+::: callout-tip
+### Slicing
+
+Mit *Slicing* kann ein Teil einer Matrix **kopiert** werden und einer anderen Variable zugewiesen werden.
+
+``` matlab
+<matrix>(<rowStart>:<rowEnd>,<colStart>:<colEnd>)
+```
+:::
+
+## Plotting
+
+::: callout-note
+## Figure-Separierung
+
+Mit `figure(n)` können mehrere Plot-Befehle in eigene Figuren geladen werden.
+:::
+
+### XY-Graph
+
+``` matlab
+figure(1);
+t = 0:0.5:10;
+y = sin(t);
+
+plot(t,y);
+xlim([-0.5 10.5]);
+ylim([-1.1 1.1]);
+```
+
+![](images/plot_simple.png)
+
+### XYY-Graph
+
+Mit `yyaxis` kann die Y-Achse beim selben Plot mit `left` & `right` gewechselt werden.
+
+``` matlab
+figure(1);
+t = 0:0.5:10;
+
+yyaxis left;
+plot(t, sin(t));
+xlim([-0.5 10.5]);
+ylim([-1.1 1.1]);
+
+yyaxis right;
+plot(t, 20*cos(t));
+xlim([-0.5 10.5]);
+ylim([-20.5 20.5]);
+```
+
+![](images/plotyy.png)
+
+## Transferfunktion `tf(…)`
+
+Mit dem Befehl `tf(...)` kann eine Transferfunktion deklariert werden mit Zähler- und Nenner-Zeilenvektoren.
+
+``` matlab
+sys = tf(numerator,denominator);
+```
+
+Die Transferfunktion kann in anderen Funktion wiederverwendet werden, wie zum Beispiel `step` oder `bode`. Folgende Beispiele sind mit der `sys`-Transferfunktion (folgende Gleichung) gemacht.
+
+$$
+G_{\text{sys}}(s) = \frac{4}{s^2+s+10}
+$$
+
+``` matlab
+sys = tf(4,[1 2 10]);
+```
+
+### PID-Regler `pidstd`
+
+``` matlab
+```
+
+### Bode-Diagramm `bode`
+
+``` matlab
+bode(sys,{0.1,100}); % or bode(sys);
+% grid on; to enable Grid in Plot
+```
+
+![](images/matlab_BodePlotResponse.png)
+
+### Nyquist-Diagramm `nyquist`
+
+``` matlab
+nyquist(sys)
+```
+
+![](images/matlab_NyquistPlotResponse.png.png)
+
+### Sprungantwort `step`
+
+Mit `step(…)` kann eine Transferfunktion mit der Sprungfunktion $\sigma$ verwendet werden. Damit
+
+``` matlab
+step(sys);
+```
+
+![](images/matlab_StepResponsePlot.png)
+
+### Impulsantwort `impulse`
+
+Mit `impulse(…)` kann die Impulsantwort der Transferfunktion ausgegeben werden.
+
+``` matlab
+impulse(sys);
+```
+
+![](images/matlab_ImpulseResponsePlot.png)
+
+### Pol-Nullstellen-Diagramm `pzmap`
+
+``` matlab
+pzmap(sys);
+ylim([-4 4]); xlim([-1.2 0]);
+```
+
+![](images/matlab_PoleZeroMap.png)
+
+::: callout-caution
+## MATLAB Zauber
+
+Damit die Pol- und Nullstellen erkennbar sind, muss eventuell mit den Darstellungsgrenzen gespielt werden.
+:::
+
+## Margin `margin(tf)`
+
+Mit dem Befehl `margin(tf)` kann das Bode-Diagramm
+
+``` vhdl
+margin(tf(1,[1 2 1 0]))
+```
+
+![](images/PlotGainAndPhaseMarginsOfTransferFunctionExample_01.png)
+
+## Zustandsraumdarstellung `ss()`
+
+Mit `ss(…)` können vier Matrizen $A, B,C,D$ zu einer Zustandsraumdarstellung zusammengeführt werden.
+
+``` matlab
+A = [0 1;-5 -2];
+B = [0;3];
+C = [0 1];
+D = 0;
+Ts = 0.25;
+sys = ss(A,B,C,D,Ts);
+```
+
+Es kann ebenfalls `bode`, `nyquist`, `step`, etc. angewendet werden, da die ZRD eine andere Darstellung der Übertragungsfunktion ist.
+
+## Reglersimulator `Sisotool(tf(...))`
+
+Mit `sisotool` kann ein Regler *C* basierend auf einem Prozess *P* ausgelegt werdne.
+
+```matlab
+P = tf(...);
+sisotool(P); % Der Prozess wird angegeben
+```
+
+## Weitere Befehle
+
+### `minreal`
+
+Kürzt doppelte Nullstellen heraus algebraisch -> reduzieren auf Minimalform
+

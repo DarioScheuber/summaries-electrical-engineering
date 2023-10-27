@@ -1,0 +1,450 @@
+# Systeme
+
+## Grundlegende Systeme
+
+### Regler System
+
+```{=latex}
+\begin{center}
+  \begin{tikzpicture}
+  % Boxes
+    \node[box, minimum height=0.8cm, inner sep=5pt] (regBox) at (-1.5,2) {Regler $C$};
+    \node[box, minimum height=0.8cm, inner sep=5pt] (procBox) at (1,2) {Prozess $P$};
+
+  % Node
+    \node[sum] (sumPoint) at (-3,2) {+};
+    \node (startNode) at (-4,2) {};
+    \node[dot] (endDot) at (2.5,2) {};
+    \node(endPoint) at (3.5,2) {};
+    \node (interferencePoint) at (1,3) {};
+
+  % Lines
+    \draw[->] (startNode) -- node[above]{$r$} (sumPoint);
+    \draw[->] (sumPoint) -- node[above]{$e$} (regBox);
+    \draw[->] (regBox) -- node[above]{$u$} (procBox);
+    \draw (procBox) -- (endDot);
+    \draw[->] (endDot) -- node[above]{$y$} (endPoint);
+    \draw[->] (endDot) -- (2.5,1) -- (-3,1) -- node[above left]{$-$} (sumPoint);
+    \draw[->] (interferencePoint) -- node[above=2mm]{$v$} (procBox);
+  \end{tikzpicture}
+\end{center}
+
+\begin{conditions}
+  r & Führungsgrösse (Soll-Wert) \\
+  e & Regelfehler \\
+  u & Stell-/Steuergrösse \\
+  y & Regelgrösse (Ist-Wert) \\
+  v & Störgrösse
+\end{conditions}
+```
+
+### Geschlossenes System
+
+```{=latex}
+\begin{center}
+  \begin{tikzpicture}
+  % Boxes
+    \node[box, minimum height=0.8cm, inner sep=5pt] (regBox) at (-1.5,2) {Regler $C$};
+    \node[box, minimum height=0.8cm, inner sep=5pt] (procBox) at (1,2) {Prozess $P$};
+
+  % Node
+    \node[dot] (endDot) at (2.5,2) {};
+    \node(endPoint) at (3.5,2) {};
+
+  % Lines
+    \draw[-{>[scale=1.5]}] (regBox) -- (procBox);
+    \draw (procBox) -- (endDot);
+    \draw[-{>[scale=1.5]}] (endDot) -- (endPoint);
+    \draw[-{>[scale=1.5]}] (endDot) -- (2.5,1) -- (-3,1) -- (-3,2) -- (regBox);
+  \end{tikzpicture}
+\end{center}
+```
+
+### Offenes System
+
+```{=latex}
+\begin{center}
+  \begin{tikzpicture}
+  % Boxes
+    \node[box, minimum height=0.8cm, inner sep=5pt] (regBox) at (-1.5,2) {Regler $C$};
+    \node[box, minimum height=0.8cm, inner sep=5pt] (procBox) at (1,2) {Prozess $P$};
+
+  % Node
+    \node(endPoint) at (3,2) {};
+    \node(startPoint) at (-3.5,2) {};
+
+  % Lines
+    \draw[-{>[scale=1.5]}] (regBox) -- (procBox);
+    \draw[-{>[scale=1.5]}] (procBox) -- (endPoint);
+    \draw[-{>[scale=1.5]}] (startPoint) -- (regBox);
+  \end{tikzpicture}
+\end{center}
+```
+::: callout-important
+#### Schleifenübertragungsfunktion
+
+$$
+L(s) = C(s)\cdot P(s)
+$$
+:::
+
+### Vorsteuerung
+
+Mit einer Vorsteuerung kann die Regelungszeit gekürzt werden (kleinerer Fehler zum Auskorrigieren).
+
+![](images/paste-1.png)
+
+## Minimalphasiges System
+
+Liegen [keine]{.underline} Pole oder Nullstellen in der [rechten Halbebene]{.underline}, so spricht man von **minimalphasigen Systeme**. Amplituden- und Phasengang stehen in einer direkten Beziehung zueinander. Es gilt **nur bei minimalphasigen Systemen**:
+
+$$
+\angle{G}\approx\frac{\pi}{2}\cdot\frac{d{\log\lvert G\rvert}}{d{\log{\omega}}}
+$$
+
+Pro $20\text{dB}$ Steigung oder Abfall beträgt die Phasenverschiebung $+90\degree$, respektive $-90\degree$.
+
+## Führungsverhalten
+
+![](images/paste-35.png){width="6cm"}
+
+$$
+G_{yr}=T=\frac{PC}{1+PC}\quad\text{und}\quad G_{ur}=CS=\frac{C}{1+PC}
+$$
+
+### Merkmale
+
+Das Führungsverhalten verfügt über vier Merkmale, welche für jedes System betrachtet soll:
+
+-   **Stabilität**
+-   **Statischer Fehler /** **stationäre Genauigkeit**
+-   **Überschwingen**
+-   **Schnelles Erreichen des stationären Wertes**
+
+**Gutes Führungsverhalten**
+
+![](images/fuhrungsverhalten\gutes_verhalten.png){width="6cm"}
+
+**Instabilität**
+
+![](images/fuhrungsverhalten\instabil.png){width="6cm"}
+
+**Statischer Fehler /** **stationäre Ungenauigkeit**
+
+![](images/fuhrungsverhalten\stationary.png){width="6cm"}
+
+**Überschwingen**
+
+![](images/fuhrungsverhalten\uberschwingung.png){width="6cm"}
+
+**Langsames Erreichen des neuen stationären Wertes**
+
+![](images/fuhrungsverhalten\slow.png){width="6cm"}
+
+### Bleibende Fehler bei langsam oder nicht ändernden Regelgrössen
+
+Der bleibende Fehler bei sich langsam oder nicht ändernden Führungssgrössen ergibt sich anhand des Verlaufs der Übertragungsfunktion bei tiefen Frequenzen.
+
+$$
+G_{yr}\approx 1-e_0-e_1\cdot s-e_2\cdot s^2 - \cdots
+$$
+
+$$
+e = e_0 \cdot r + e_1 \cdot \dot{r}+e_2\cdot \ddot{r}+\cdots
+$$
+
+![](images/paste-37.png){width="5cm" height="1.8cm"}
+
+::: callout-note
+### Stationärer Fehler
+
+Bei Rampe: $e_0 = 0\qquad$ Bei Parabel $e_0 = e_1 = 0$
+:::
+
+
+## Störverhalten
+
+$$
+G_{er}(s)=\frac{E(s)}{R(s)}
+$$
+
+### Merkmale
+
+Das Störverhlaten verfügt ebenfalls über vier Merkmale, welche für jedes System betrachtet soll:
+
+-   **Stabilität**
+-   **Statischer Fehler /** **stationäre Genauigkeit**
+-   **Überschwingen**
+-   **Schnelles Erreichen des stationären Wertes**.
+
+**Gutes Störverhalten**
+
+![](images/storverhalten\gutes_verhalten.png){width="6cm"}
+
+\textsuperscript{rot: Sollwert}
+
+**Instabilität**
+
+![](images/storverhalten\storverhalten_stability.png){width="6cm"}
+
+**Stationärer Fehler / Ungenauigkeit**
+
+![](images/storverhalten\storverhalten_stationary.png){width="6cm"}
+
+**Überschwingen**
+
+![](images/storverhalten\uber_unterschwingung.png){width="6cm"}
+
+**Langsames Erreichen des stationären Wertes**
+
+![](images/storverhalten\slow.png){width="6cm"}
+
+
+<!--=================================================-->
+
+
+# Darstellungsarten
+
+## Blockdiagrammalgebra
+
+### Verkettung
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    \node[box=0.8cm, minimum height=0.8cm] (sysG1) at (0,0) {$G_1$};
+    \node[box=0.8cm, minimum height=0.8cm](sysG2) at (1.5,0) {$G_2$};
+    \node[box=0.8cm, minimum height=0.8cm] (sysG12) at (0.75,-1) {$G_1G_2$};
+    \node(start) at (-1.5,0) {};
+    \node(end) at (3,0) {};
+    \node(start2) at (-1,-1) {};
+    \node(end2) at (2.5,-1) {};
+    \draw[->]  (start2) edge node[above]{$u$} (sysG12);
+    \draw[->]  (sysG12) edge node[above]{$y$} (end2);
+    
+    \draw[->]  (start) edge node[above]{$u$} (sysG1);
+    \draw[->]  (sysG1) edge (sysG2);
+    \draw[->]  (sysG2) edge node[above]{$y$}  (end);
+    
+\end{tikzpicture}
+\end{center}
+```
+$$
+y = G_2 ( G_1 \cdot u) = (G_1G_2)\cdot u
+$$
+
+### Parallel
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    \node[box=0.8cm, minimum height=0.8cm] (sysG1) at (1,1.5) {$G_1$};
+    \node[box=0.8cm, minimum height=0.8cm] (sysG2) at (1,0) {$G_2$};
+    \node[box=0.8cm, minimum height=0.8cm] (sysG12) at (1,-1) {$G_1+G_2$};
+    \node[dot] (dotStart) at (0,0.75) {};
+    \node[sum] (sumEnd) at (2,0.75) {+};
+    \node(start) at (-1.,0.75) {};
+    \node(end) at (3,0.75) {};
+    \node(start2) at (-1,-1) {};
+    \node(end2) at (3,-1) {};
+    \draw[->] (start2) edge node[above]{$u$} (sysG12);
+    \draw[->] (sysG12) edge node[above]{$y$} (end2);
+    
+    \draw     (start) edge node[above]{$u$} (dotStart);
+    \draw[->] (dotStart) |- (sysG1);
+    \draw[->] (dotStart) |- (sysG2);
+    \draw[->] (sysG1) -| (sumEnd);
+    \draw[->] (sysG2) -| (sumEnd);
+    \draw[->] (sumEnd) edge node[above]{$y$}  (end);
+    
+\end{tikzpicture}
+\end{center}
+```
+$$
+y = G_1\cdot u + G_1 \cdot u = (G_1 + G_2)\cdot u
+$$
+
+### Rückkopplung
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    \node[sum] (sumStart) at (0,1) {$+$};
+    \node[box=0.8cm, minimum height=0.8cm] (sysG) at (1.5,1) {$G$};
+    \node[box=0.8cm, minimum height=0.8cm] (sysG12) at (1.25,-1) {$\frac{G}{1+G}$};
+    \node(start) at (-1,1) {};
+    \node(end) at (3.5,1) {};
+    \node[dot] (endDot) at (2.5,1) {};
+    \node(start2) at (-0.5,-1) {};
+    \node(end2) at (3,-1) {};
+    
+    \draw[->]  (start2) edge node[above]{$r$} (sysG12);
+    \draw[->]  (sysG12) edge node[above]{$y$} (end2);
+    
+    \draw[->]  (start) edge node[above]{$r$} (sumStart);
+    \draw[->]  (sumStart) edge node[above]{$e$} (sysG);
+    \draw      (sysG) edge (endDot);
+    \draw[->]  (endDot) edge node[above]{$y$}  (end);
+    
+\draw[->] (endDot) -- (2.5,0) -- (0,0) -- node[above left]{$-$} (sumStart);
+\end{tikzpicture}
+\end{center}
+```
+$$
+\begin{split}
+y &= G\cdot e = G(r-y)\\
+(1+G)\cdot y &= G\cdot r \\
+y &= \underbrace{\frac{G}{1+G}}_{G_{yr}} \cdot r\\
+\end{split}
+$$
+
+### Regel von Mason
+
+$$
+G_{ij} = \frac{\sum_k P_k\cdot\Delta_k}{\Delta}
+$$
+
+$$
+\begin{split}
+P_k &= \text{Vorwärtspfad } k\\
+\Delta = 1 &- \small{\Sigma\text{ aller Loops}} \\
+           &+ \small{\Sigma\text{ aller Produkte 2er Loops, die sich nicht berühren}} \\
+           &- \small{\Sigma\text{ aller Produkte 3er Loops, die sich nicht berühren}} \\
+           &+ \cdots \\
+\Delta_k = 1 &- \small{\Sigma\text{ aller Loops, die $P_k$ nicht berühren}} \\
+             &+ \small{\Sigma\text{ aller Produkte 2er Loops, die $P_k$ \& sich nicht berühren}} \\
+             &- \small{\Sigma\text{ aller Produkte 3er Loops, die $P_k$ \& sich nicht berühren}} \\
+             &+ \cdots \\
+\end{split}
+$$
+
+[Beispiel]{.underline}
+
+![](images/paste-9.png)
+
+![](images/paste-10.png)
+
+$P_1 = ABCD \quad \Delta_1 = 1-0\quad P_2 = ABD \quad \Delta_2=1-0$
+
+$\Delta=A-((-BCF)+CDE+((-B)(-D)(CEF))$
+
+$$
+G_{uy}=\frac{ABD(1+C)}{A+BCF-CDE-BCDEF}
+$$
+
+## Zustandraumdarstellung
+
+Die Zustandsraumdarstellung erlaubt ein Einblick in das Verhalten eines dynamischen Systems. Anhand eines *Zeitdiagrammes* und *Phasenporträit* kann das System *visualisiert* werden. Man gibt Startkonditionen an und kann über das Phasenporträit den zeitlichen Verlauf verfolgen.
+
+![](images/state_space\quiver.png){fig-align="center" width="5.7cm"}
+
+![](images/state_space\time.png){fig-align="center" width="6.3cm"}
+
+### Autonomes, zeitinvariantes System
+
+```{=latex}
+\begin{center}
+  \begin{tikzpicture}
+    \node[rectangle, draw=black, minimum width = 2cm] (a) at (0,0) {$\frac{dx}{dt} = f(x)$};
+    \node (b) at (2,0) {};
+    \draw[->] (a) -- node [above] {$x$} (b);
+  \end{tikzpicture}
+\end{center}
+```
+
+$$
+\frac{dx}{dt}=f(x)
+$$
+
+Autonome Systeme berücksichtigen äusserliche Beeinflussungen [nicht]{.underline} und sind ausschliesslich vom Anfangszustand abhängig.
+
+### Allgemeine Systeme
+
+```{=latex}
+\begin{center}\begin{tikzpicture}
+
+\node[rectangle, draw=black, minimum width = 2cm] (a) at (0,0) {
+$
+\begin{matrix}
+\frac{dx}{dt} = f(x,u) \\
+y=h(x,u)
+\end{matrix}
+$
+};
+\node (b) at (2,0) {};
+\node (c) at (-2,0) {};
+
+\draw[->] (a) -- node [above] {$y$} (b);
+\draw[->] (c) -- node [above] {$u$} (a);
+
+\end{tikzpicture}\end{center}
+```
+$$
+\frac{dx}{dt}=f(x,u)\qquad y=h(x,u)
+$$
+
+### Lineares Zustandsraummodell
+
+Viele der Systeme können an ein zeitinvariantes und lineares System (LTI-System) angenähert werden.
+
+```{=latex}
+\begin{center}\begin{tikzpicture}[scale=0.8]
+
+
+
+\node (entry) at (-1,0) {$u$};
+\node[rectangle, draw=black, minimum width=1cm] (integ) at (3.25,0) {$\int{dt}$};
+\node[circle, draw=black] (circA) at (3.25,-1) {\textcolor{NavyBlue}{\textbf{A}}};
+\node[circle, draw=black] (circB) at (1,0) {\textcolor{BurntOrange}{\textbf{B}}};
+\node[sum] (add)   at (2,0) {+};
+\node[sum] (add2) at (6.5,0) {+};
+\node[circle, draw=black] (circC) at (5.5,0) {\textcolor{BrickRed}{\textbf{C}}};
+\node[circle, draw=black] (circD) at (3.25,1) {\textcolor{OliveGreen}{\textbf{D}}};
+\node [dot] (v2) at (4.5,0) {};
+\node [dot] (v3) at (0,0) {};
+\node (end) at (7.5,0) {$y$};
+
+
+\draw [->] (integ) edge node [above]{$x$} (v2);
+\draw [->] (v2) edge (circC);
+\draw [->] (add) edge node[above]{$\dot{x}$} (integ);
+\draw [->] (circB) edge (add);
+\draw [->] (entry) edge (circB);
+\draw [->] (circA) -| (add);
+\draw [->] (v2) |- (circA);
+\draw [->] (v3) |- (circD);
+\draw [->] (circD) -| (add2);
+\draw [->] (circC) -- (add2);
+\draw [->] (add2) -- (end);
+\end{tikzpicture}\end{center}
+```
+$$
+\frac{dx}{dt}=\left(\begin{matrix} \dot{x}_1 \\ \dot{x}_2 \end{matrix}\right)=\textcolor{NavyBlue}{\mathbf{A}}x+\textcolor{BurntOrange}{\mathbf{B}}u \qquad y = \textcolor{BrickRed}{\mathbf{C}}x + \textcolor{OliveGreen}{\mathbf{D}}u
+$$
+
+```{=latex}
+\begin{conditions}
+  A & beschreibt Dynamik \\
+  B & beschreibt Steuereinfluss \\
+  C & beschreibt Messung \\
+  D & beschreibt Durchgriff
+\end{conditions}
+```
+
+### Übertragungsfunktion
+
+Wird als Eingangssignal $u$
+
+$$
+u=\cos(\omega t)=\frac12(e^{+j\omega t}+e^{-j\omega t})
+$$
+
+gegeben, ergibt sich folgendes Ausgangssignal
+
+$$
+y(t)=\underbrace{C\textcolor{BrickRed}{e^{At}}(x(0)-(sI-A)^{-1}B)}_{\text{transient } y_t} + \underbrace{\overbrace{(C(sI-A)^{-1}B+D)}^{\text{Übertragungsfunktion}} e^{st}}_{\text{stationär } y_s}
+$$
+
+::: callout-note
+Ist $A$ stabil, so geht der transiente Anteil $y_t$ asymptotisch gegen Null. Der stationäre Anteil bleibt übrig und entspricht der Übertragungsfunktion.
+:::
