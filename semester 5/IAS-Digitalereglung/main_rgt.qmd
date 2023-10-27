@@ -16,7 +16,7 @@ format:
       - text: "\\usepackage[nswissgerman]{babel}"
     template-partials:
       - config/before-body.tex
-    output-file: "s4_regelungstechnik"
+    output-file: "IAS"
     fontenc: T1
 
 source:
@@ -88,3 +88,5 @@ fig-align: center
 -->
 
 {{< include sec_systems.qmd >}}
+{{< include 02_Z_Transform.qmd >}}
+{{< include 03_diskrete_Reglung.qmd >}}
