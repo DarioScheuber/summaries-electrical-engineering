@@ -366,3 +366,28 @@ with open(file="dict.json", mode = "r+") as fp:
     my_read_dict = json.load(fp=fp)
 pp.pprint(my_read_dict)
 ```
+
+## Generatoren
+
+In Python ist ein \textbf{Generator} eine Funktion, \textbf{die einen Iterator zurückgibt}, der erst dann eine Folge von Werten erzeugt, wenn man darüber iteriert. Generatoren sind nützlich, wenn wir eine \textbf{grosse Folge von Werten} erzeugen wollen, aber nicht alle auf einmal im Speicher ablegen wollen. Ein Generator kann in Python als eine Funktion mit einem \textcolor{red}{yield} Keyword definiert werden.
+
+``` python
+def my_generator(n):
+    """
+    Function to Return Generator to count to n
+    """
+    i = 0
+    while i < n:
+        i += 1
+        yield i
+        
+gen = my_generator(10)  
+#<generator object count at 0x000001C167494580>
+list(gen)
+#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+::: callout-note
+### `yield`
+Wenn \textcolor{red}{yield} aufgerufen wird, wird der \textbf{aktuelle Zustand der Funktion gespeichert} und ein Wert zurückgegeben. 
+:::
