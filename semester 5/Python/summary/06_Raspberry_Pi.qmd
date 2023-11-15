@@ -1,0 +1,63 @@
+# Raspberry Pi
+
+Um mit dem Sense HAT in Verbindung zu treten, muss zuerst das Sense HAT Modul importiert werden. `from sense_hat import SenseHat`
+
+Instanziere ein SenseHat Objekt: `sense = SenseHat()`
+
+## show_message()
+
+Für unser «Hello World» Beispiel, verwende nun die Methode `.show_message()`, um «Hello World» als Laufschrift auf der LED Matrix auszugeben. `sense.show_message("Hello World")`
+
+``` python
+def show_message(
+            text_string,
+            scroll_speed=.1,
+            text_colour=[255, 255, 255],
+            back_colour=[0, 0, 0]
+        ):
+        """
+        Scrolls a string of text across the LED matrix using the specified
+        speed and colours
+        """
+```
+
+![](images/paste-10.png){width="914"}
+
+## clear()
+
+Mit der Methode `.clear()` können wir die alle Pixel der LED Matrix auf einmal ansteuern. Es kann zudem ein Tupel oder eine Liste mit den RGB Werten übergeben werden.
+
+``` python
+def clear((r,g,b)):
+        """
+        Clears the LED matrix with a single
+        colour, default is black / off
+        """
+```
+
+## show_letter()
+
+Mit `.show_letter()` können einzelne Buchstaben/Zeichen (String mit Länge 1) auf der LED Matrix ausgeben werden. `sense.show_letter("A")` or `sense.show_letter("A", [0,255,0], [0,0,255])`
+
+## sleep()
+
+Mit sleep kann die Anzeigedauer (in Sekunden) bestimmt werden.
+
+``` python
+from time import sleep
+sleep(0.5)      #wait 0.5s
+```
+
+## set_pixel()
+Mit `.set_pixel()` können einzelne Pixel der 8x8 LED Matrix angesteuert werden.
+`sense.set_pixel(x,y,r,g,b)` or `sense.set_pixel(x, y, color)`
+
+## load_image()
+Bilder mit 8x8 Pixel und 8-bit Farbtiefe können mit `.load_image()` übergeben werden.
+
+## set_rotation()
+Mit `.set_rotation()` kann das Bild auf der LED Matrix um 0, 90, 180 oder 270 Grad gedreht werden (im Uhrzeigersinn). Der Winkel ist dabei immer absolut.
+
+## Sense HAT Emulator
+Wird der Emulator verwendet, muss für alle Programme jeweils bei der Import Anweisung `sense_hat` mit `sense_emu` ersetzt werden.
+`from sense_emu import SenseHat`
