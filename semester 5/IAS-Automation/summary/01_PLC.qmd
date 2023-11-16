@@ -369,3 +369,24 @@ Abarbeitungsschema einer CASE-Anweisung:
     enStateOld := enState;
     enState := enStateNext;
 ```
+
+## call by Value
+
+``` scl
+    VAR_INPUT
+        <variable name> : <data type> ( := <initialization value> )? ;
+    END_VAR
+```
+::: callout-important
+Es muss ein Rückgabewert übergeben werden und muss zusätzlichen Speicher allozieren werden.
+:::
+## call by Refernce
+
+``` scl
+    VAR_IN_OUT
+        <variable name> : <data type> ( := <initialization value> )? ;
+    END_VAR
+```
+::: callout-important
+Es muss kein Rückgabewert übergeben werden und kein zusätzlichen Speicher allozieren werden.
+:::

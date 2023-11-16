@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>plc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="01_PLC_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01_PLC_files/libs/quarto-html/quarto.js"></script>
+<script src="01_PLC_files/libs/quarto-html/popper.min.js"></script>
+<script src="01_PLC_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="01_PLC_files/libs/quarto-html/anchor.min.js"></script>
+<link href="01_PLC_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01_PLC_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="01_PLC_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="01_PLC_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="01_PLC_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="automatisierung" class="level1">
+<h1>Automatisierung</h1>
+<section id="data-types" class="level2">
+<h2 class="anchored" data-anchor-id="data-types">Data types</h2>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data type</th>
+<th>Lower bound</th>
+<th>Upper bound</th>
+<th>Memory space</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BYTE</td>
+<td>0</td>
+<td>255</td>
+<td>8 bit</td>
+</tr>
+<tr class="even">
+<td>WORD</td>
+<td>0</td>
+<td>65535</td>
+<td>16 bit</td>
+</tr>
+<tr class="odd">
+<td>DWORD</td>
+<td>0</td>
+<td>4294967295</td>
+<td>32 bit</td>
+</tr>
+<tr class="even">
+<td>LWORD</td>
+<td>0</td>
+<td>2^64-1</td>
+<td>64 bit</td>
+</tr>
+<tr class="odd">
+<td>SINT</td>
+<td>-128</td>
+<td>127</td>
+<td>8 bit</td>
+</tr>
+<tr class="even">
+<td>USINT</td>
+<td>0</td>
+<td>255</td>
+<td>8 bit</td>
+</tr>
+<tr class="odd">
+<td>INT</td>
+<td>-32768</td>
+<td>32767</td>
+<td>16 bit</td>
+</tr>
+<tr class="even">
+<td>UINT</td>
+<td>0</td>
+<td>65535</td>
+<td>16 bit</td>
+</tr>
+<tr class="odd">
+<td>DINT</td>
+<td>-2147483648</td>
+<td>2147483647</td>
+<td>32 bit</td>
+</tr>
+<tr class="even">
+<td>UDINT</td>
+<td>0</td>
+<td>4294967295</td>
+<td>32 bit</td>
+</tr>
+<tr class="odd">
+<td>LINT</td>
+<td>-2^63</td>
+<td>2^63-1</td>
+<td>64 bit</td>
+</tr>
+<tr class="even">
+<td>ULINT</td>
+<td>0</td>
+<td>2^64-1</td>
+<td>64 bit</td>
+</tr>
+<tr class="odd">
+<td>BOOL</td>
+<td>FALSE (0)</td>
+<td>TRUE (1)</td>
+<td>8 bit</td>
+</tr>
+<tr class="even">
+<td>REAL</td>
+<td>-3.402823e+38</td>
+<td>3.402823e+38</td>
+<td>32 bit</td>
+</tr>
+<tr class="odd">
+<td>LREAL</td>
+<td>-1.7976931348623158e+308</td>
+<td>1.7976931348623158e+308</td>
+<td>64 bit</td>
+</tr>
+</tbody>
+</table>
+<pre class="scl"><code>VAR 
+    var :INT:= 10; 
+END_VAR</code></pre>
+</section>
+<section id="vergleichsoperatoren" class="level2">
+<h2 class="anchored" data-anchor-id="vergleichsoperatoren">Vergleichsoperatoren</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Funktion</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gleichheit</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>Grösser oder gleich</td>
+<td>&gt;=</td>
+</tr>
+<tr class="odd">
+<td>Grösser als</td>
+<td>&gt;</td>
+</tr>
+<tr class="even">
+<td>Kleiner oder gleich</td>
+<td>&lt;=</td>
+</tr>
+<tr class="odd">
+<td>Kleiner als</td>
+<td>&lt;</td>
+</tr>
+<tr class="even">
+<td>Ungleichheit</td>
+<td>&lt;&gt;</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bitoperatoren" class="level2">
+<h2 class="anchored" data-anchor-id="bitoperatoren">Bitoperatoren</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Funktion</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bitweisen AND</td>
+<td>AND</td>
+</tr>
+<tr class="even">
+<td>bitweisen NOT</td>
+<td>NOT</td>
+</tr>
+<tr class="odd">
+<td>bitweisen OR</td>
+<td>OR</td>
+</tr>
+<tr class="even">
+<td>bitweisen XOR</td>
+<td>XOR</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="array" class="level2">
+<h2 class="anchored" data-anchor-id="array">Array</h2>
+<p>Declaration 1:</p>
+<p>One-dimensional array of 10 integer elements</p>
+<p>Lower index limit: 0 Upper index limit: 9</p>
+<pre class="scl"><code>VAR
+    aCounter : ARRAY[0..9] OF INT;
+    bCounter : ARRAY[0..9] OF INT := [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+END_VAR</code></pre>
+</section>
+<section id="struct" class="level2">
+<h2 class="anchored" data-anchor-id="struct">Struct</h2>
+<p>Eine Struktur ist ein benutzerdefinierter Datentyp und fasst mehrere Variablen mit beliebigen Datentypen zu einer logischen Einheit zusammen. Die innerhalb einer Struktur deklarierten Variablen werden als Komponenten bezeichnet.</p>
+<section id="beispiel" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel">Beispiel</h3>
+<section id="strukturdeklaration" class="level4">
+<h4 class="anchored" data-anchor-id="strukturdeklaration">Strukturdeklaration</h4>
+<pre class="scl"><code>TYPE ST_CONTROL :
+STRUCT
+    bitOperationEnabled  : BIT;
+    bitSwitchOnActive    : BIT;
+    bitEnableOperation   : BIT;
+    bioterror            : BIT;
+    bitVoltageEnabled    : BIT;
+    bitQuickStop         : BIT;
+    bitSwitchOnLocked    : BIT;
+    bitWarning           : BIT;
+END_STRUCT
+END_TYPE</code></pre>
+</section>
+<section id="strukturzugriff" class="level4">
+<h4 class="anchored" data-anchor-id="strukturzugriff">Strukturzugriff</h4>
+<pre class="scl"><code>PROGRAM MAIN
+VAR
+    stControl : ST_CONTROL;
+END_VAR
+
+IF stControl.bitVoltageEnabled = TRUE THEN
+    // Symbolic bit access
+    stControl.bitEnableOperation := TRUE;
+END_IF</code></pre>
+</section>
+</section>
+</section>
+<section id="objekt-funktion" class="level2">
+<h2 class="anchored" data-anchor-id="objekt-funktion">Objekt Funktion</h2>
+<p>Eine Funktion ist eine POU, die bei der Ausführung genau ein Datenelement liefert und dessen Aufruf in textuellen Sprachen als Operator in Ausdrücken vorkommen kann. Das Datenelement kann auch ein Array oder eine Struktur sein.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+keine interne Statusinformation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Funktionen haben keine interne Statusinformation, das bedeutet, dass Funktionen die Werte ihrer Variablen nicht bis zum nächsten Aufruf speichern. Aufrufe einer Funktion mit denselben Eingabevariablen-Werten liefern immer denselben Ausgabewert. Deshalb dürfen Funktionen keine globalen Variablen und Adressen verwenden!</p>
+</div>
+</div>
+<section id="beispiel-1" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-1">Beispiel</h3>
+<p><code>FUNCTION &lt;function&gt; : &lt;data type&gt;</code></p>
+<pre class="scl"><code>FUNCTION F_Summe : INT
+VAR_INPUT
+    nVar1 : INT;
+    nVar2 : INT;
+END_VAR
+VAR
+END_VAR
+
+F_Summe := nVar1 + nVar2;</code></pre>
+</section>
+</section>
+<section id="aufzählungen-enumerationen" class="level2">
+<h2 class="anchored" data-anchor-id="aufzählungen-enumerationen">Aufzählungen / Enumerationen</h2>
+<p>Eine Enumeration oder Aufzählung ist ein benutzerdefinierter Datentyp, der sich aus einer kommaseparierten Reihe von Komponenten, auch Enumerationswerte genannt, zusammensetzt, um benutzerdefinierte Variablen zu deklarieren. Die Deklaration einer Enumeration nehmen Sie in einem DUT-Objekt vor, das Sie über den Befehl im Kontextmenü des SPS-Projektbaums im Projekt anlegen. ### Beispiel</p>
+<pre class="scl"><code>TYPE En_States :
+(
+    eInit := 0,
+    eAuto := 1,
+    eManu := 2
+);
+END_TYPE</code></pre>
+<p> <code>en_State := En_States;</code></p>
+</section>
+<section id="objekt-funktionsbaustein" class="level2">
+<h2 class="anchored" data-anchor-id="objekt-funktionsbaustein">Objekt Funktionsbaustein</h2>
+<p>Ein Funktionsbaustein ist eine POU, die bei der Ausführung einen oder mehrere Werte liefert. Die Werte der Ausgabevariablen und der internen Variablen bleiben nach einer Ausführung bis zur nächsten erhalten. Dies bedeutet, dass der Funktionsbaustein bei mehrmaligem Aufruf mit denselben Eingabevariablen nicht unbedingt dieselben Ausgabewerte liefert.</p>
+</section>
+<section id="objekt-programm" class="level2">
+<h2 class="anchored" data-anchor-id="objekt-programm">Objekt Programm</h2>
+<p>Ein Programm ist eine POU, die bei der Ausführung einen oder mehrere Werte liefert. Alle Werte bleiben nach einer Ausführung des Programms bis zur nächsten Ausführung erhalten. Die Aufrufreihenfolge der Programme innerhalb eines SPS-Projekts definieren Sie in Taskobjekten.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Programm unterscheied zu Funktionsbaustein
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn eine POU ein Programm aufruft und sich dadurch Werte des Programms verändern, bleiben diese Änderungen bis zum nächsten Programmaufruf erhalten. Die Werte des Programms bleiben auch dann erhalten, wenn der erneute Aufruf durch eine andere POU erfolgt. Dies unterscheidet sich vom Aufruf eines Funktionsbausteins. Beim Funktionsbaustein-Aufruf ändern sich nur die Werte der jeweiligen Instanz des Funktionsbausteins. Die Änderungen sind nur zu beachten, wenn eine POU dieselbe Instanz erneut aufruft.</p>
+</div>
+</div>
+</section>
+<section id="for-schleife" class="level2">
+<h2 class="anchored" data-anchor-id="for-schleife">FOR-Schleife</h2>
+<p>Mit der FOR-Schleife kann man wiederholte Vorgänge programmieren. <code>FOR &lt;INT_Var&gt; := &lt;INIT_WERT&gt; TO &lt;END_WERT&gt; {BY &lt;Schrittgröße&gt;} DO</code></p>
+<pre class="scl"><code>FOR Zaehler:=1 TO 5 BY 1 DO
+    Var1:=Var1*2;
+END_FOR;</code></pre>
+</section>
+<section id="while-schleife" class="level2">
+<h2 class="anchored" data-anchor-id="while-schleife">WHILE-Schleife</h2>
+<p>Die WHILE-Schleife kann benutzt werden wie die FOR-Schleife, mit dem Unterschied, dass die Abbruchbedingung ein beliebiger boolscher Ausdruck sein kann. Das heißt, man gibt eine Bedingung an, die, wenn sie zutrifft, die Ausführung der Schleife zur Folge hat. <code>WHILE &lt;Boolescher Ausdruck&gt; DO</code></p>
+<pre class="scl"><code>WHILE Zaehler&lt;&gt;0 DO
+    Var1 := Var1*2;
+    Zaehler := Zaehler-1;
+END_WHILE</code></pre>
+</section>
+<section id="while-schleife-1" class="level2">
+<h2 class="anchored" data-anchor-id="while-schleife-1">WHILE-Schleife</h2>
+<p>Die REPEAT-Schleife unterscheidet sich von den WHILE-Schleifen dadurch, dass die Abbruchbedingung erst nach dem Ausführen der Schleife überprüft wird. Das hat zur Folge, dass die Schleife mindestens einmal durchlaufen wird, egal wie die Abbruchbedingung lautet. <code>UNTIL &lt;Boolescher Ausdruck&gt;</code></p>
+<pre class="scl"><code>REPEAT
+    Var1 := Var1*2;
+    Zaehler := Zaehler-1;
+UNTIL
+    Zaehler=0
+END_REPEAT</code></pre>
+</section>
+<section id="timer-ton" class="level2">
+<h2 class="anchored" data-anchor-id="timer-ton">Timer TON</h2>
+<p>Wenn IN = FALSE ist, sind die Ausgaben FALSE bzw. 0. Sobald IN = TRUE ist, wird in ET die Zeit in Millisekunden hochgezählt, bis der Wert gleich dem in PT ist, dann bleibt er gleich. Q ist TRUE wenn IN = TRUE und ET = PT ist. Sonst ist Q = FALSE. Q hat somit eine steigende Flanke, wenn die in PT in Millisekunden angegebene Zeit abgelaufen ist.</p>
+<p><img src="image/TON_aufbau.png" class="img-fluid"></p>
+<pre class="scl"><code>VAR_INPUT
+    IN : BOOL; (* starts timer with rising edge, resets timer with falling edge *) 
+    PT : TIME; (* time to pass, before Q is set *)
+END_VAR</code></pre>
+<pre class="scl"><code>VAR_OUTPUT
+    Q  : BOOL; (* is TRUE, PT seconds after IN had a rising edge *)
+    ET : TIME; (* elapsed time *)
+END_VAR</code></pre>
+<p><img src="image/TON.png" class="img-fluid"></p>
+<section id="beispiel-2" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-2">Beispiel</h3>
+<pre class="scl"><code>PROGRAM MAIN 
+VAR 
+    timer1 :TON; 
+    bTimerDone:BOOL; 
+    bTimerIn:BOOL; 
+END_VAR
+
+timer1(IN:=bTimerIn,PT := T#20S); 
+IF timer1.Q THEN 
+    //timer1.IN := FALSE; geht nicht
+    timer1(IN:=FALSE);
+
+    timer1.IN := FALSE;
+    timer1();   
+END_IF</code></pre>
+</section>
+</section>
+<section id="st-anweisung-case-switch-case" class="level2">
+<h2 class="anchored" data-anchor-id="st-anweisung-case-switch-case">ST-Anweisung CASE (switch case)</h2>
+<p>Die CASE-Anweisung verwenden Sie, um mehrere bedingte Anweisungen mit derselben Bedingungsvariablen in einem Konstrukt zusammenzufassen.</p>
+<p>Syntax:</p>
+<pre class="scl"><code>    CASE &lt;Var1&gt; OF
+    &lt;value1&gt;:&lt;instruction1&gt;
+    &lt;value2&gt;:&lt;instruction2&gt;
+    &lt;value3, value4, value5&gt;:&lt;instruction3&gt;
+    &lt;value6 ... value10&gt;:&lt;instruction4&gt;
+    ...
+    &lt;value n&gt;:&lt;instruction n&gt;
+    {ELSE &lt;ELSE-instruction&gt;}
+    END_CASE;</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Der Abschnitt innerhalb der geschweiften Klammer {} ist optional.
+
+Abarbeitungsschema einer CASE-Anweisung:
+- Wenn die Variable &lt;Var1&gt; den Wert &lt;&lt;value i&gt; hat, wird die Anweisung &lt;instruction i&gt; ausgeführt.
+- Wenn die Variable &lt;Var1&gt; keinen der angegebenen Werte hat, dann wird die &lt;ELSE-instruction&gt; ausgeführt.
+- Wenn für mehrere Werte der Variablen dieselbe Anweisung auszuführen ist, können Sie diese Werte durch Kommata getrennt hintereinander schreiben.</code></pre>
+</div>
+</div>
+<section id="beispiel-3" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-3">Beispiel</h3>
+<pre class="scl"><code>    CASE nVar OF 
+        1,5 : bVar1 := TRUE; 
+            bVar3 := FALSE; 
+
+        2 : bVar2 := FALSE; 
+            bVar3 := TRUE; 
+
+    10..20 : bVar1 := TRUE; 
+            bVar3 = TRUE; 
+    ELSE 
+            bVar1 := NOT bVar1; 
+            bVar2 := bVar1 OR bVar2; 
+    END_CASE;</code></pre>
+</section>
+</section>
+<section id="statemaschine-beispiel" class="level2">
+<h2 class="anchored" data-anchor-id="statemaschine-beispiel">Statemaschine Beispiel</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image/Statemaschineflussdiagram.png" width="352" height="270" class="figure-img"></p>
+</figure>
+</div>
+<section id="inputs-and-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="inputs-and-outputs">Inputs and Outputs</h3>
+<pre class="scl"><code>    VAR_GLOBAL
+        bLamp : BOOL;
+        bButtonLamp : BOOL;
+        bButtonManAuto : BOOL;
+    END_VAR</code></pre>
+</section>
+<section id="states" class="level3">
+<h3 class="anchored" data-anchor-id="states">States</h3>
+<pre class="scl"><code>    TYPE En_States :
+    (
+        eUndefined := 0,
+        eInit ,
+        eAuto ,
+        eManu 
+    );
+    END_TYPE</code></pre>
+</section>
+<section id="main" class="level3">
+<h3 class="anchored" data-anchor-id="main">Main</h3>
+<pre class="scl"><code>    PROGRAM MAIN
+    VAR
+        enState : En_States := En_States.eInit;
+        enStateOld : En_States;
+        enStateNext : En_States;
+        fb_Blinker : FB_Blinker;
+    END_VAR
+
+    CASE enState OF
+        (*-----------------undefined state-----------------*)
+        En_States.eUndefined:
+        
+        ;
+        (*-----------------init state-----------------*)
+        En_States.eInit:
+            //Entry action
+            //Cyclic action
+            IF GVL_IO.bButtonManAuto = TRUE THEN
+                enState := En_States.eAuto;
+            ELSE
+                enState := En_States.eManu;
+            END_IF  
+            //Exit action
+        ;
+        (*-----------------auto state-----------------*)
+        En_States.eAuto:
+            //Entry action
+            IF enState &lt;&gt; enStateOld THEN
+                GVL_IO.bLamp := TRUE;
+            END_IF
+            //Cyclic action
+            fb_Blinker(bIn := GVL_IO.bLamp, bOut =&gt; GVL_IO.bLamp);
+            IF GVL_IO.bButtonManAuto = FALSE THEN
+                enStateNext := En_States.eManu;
+            END_IF
+            //Exit action
+        ;
+        (*-----------------manu state-----------------*)
+        En_States.eManu:
+            //Entry action
+            IF enState &lt;&gt; enStateOld THEN
+                GVL_IO.bLamp := FALSE;
+            END_IF
+            //Cyclic action
+            IF enState &lt;&gt; enStateOld THEN
+                GVL_IO.bButtonLamp := FALSE; //Achtung bei echten Button braucht es edge detection
+                GVL_IO.bLamp := NOT(GVL_IO.bLamp);
+            END_IF
+            
+            IF GVL_IO.bButtonManAuto THEN
+                enStateNext := En_States.eAuto;
+            END_IF
+            //Exit action
+        ;
+        
+    ELSE
+        enState := En_States.eUndefined;
+    END_CASE
+
+    enStateOld := enState;
+    enState := enStateNext;</code></pre>
+</section>
+</section>
+<section id="call-by-value" class="level2">
+<h2 class="anchored" data-anchor-id="call-by-value">call by Value</h2>
+<pre class="scl"><code>    VAR_INPUT
+        &lt;variable name&gt; : &lt;data type&gt; ( := &lt;initialization value&gt; )? ;
+    END_VAR</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es muss ein Rückgabewert übergeben werden und muss zusätzlichen Speicher allozieren werden.</p>
+</div>
+</div>
+</section>
+<section id="call-by-refernce" class="level2">
+<h2 class="anchored" data-anchor-id="call-by-refernce">call by Refernce</h2>
+<pre class="scl"><code>    VAR_IN_OUT
+        &lt;variable name&gt; : &lt;data type&gt; ( := &lt;initialization value&gt; )? ;
+    END_VAR</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es muss kein Rückgabewert übergeben werden und kein zusätzlichen Speicher allozieren werden.</p>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
