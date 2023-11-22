@@ -4,6 +4,8 @@ Um mit dem Sense HAT in Verbindung zu treten, muss zuerst das Sense HAT Modul im
 
 Instanziere ein SenseHat Objekt: `sense = SenseHat()`
 
+![](images/paste-19.png){width="548"}
+
 ## show_message()
 
 Für unser «Hello World» Beispiel, verwende nun die Methode `.show_message()`, um «Hello World» als Laufschrift auf der LED Matrix auszugeben. `sense.show_message("Hello World")`
@@ -49,15 +51,68 @@ sleep(0.5)      #wait 0.5s
 ```
 
 ## set_pixel()
-Mit `.set_pixel()` können einzelne Pixel der 8x8 LED Matrix angesteuert werden.
-`sense.set_pixel(x,y,r,g,b)` or `sense.set_pixel(x, y, color)`
+
+Mit `.set_pixel()` können einzelne Pixel der 8x8 LED Matrix angesteuert werden. `sense.set_pixel(x,y,r,g,b)` or `sense.set_pixel(x, y, color)`
 
 ## load_image()
+
 Bilder mit 8x8 Pixel und 8-bit Farbtiefe können mit `.load_image()` übergeben werden.
 
 ## set_rotation()
+
 Mit `.set_rotation()` kann das Bild auf der LED Matrix um 0, 90, 180 oder 270 Grad gedreht werden (im Uhrzeigersinn). Der Winkel ist dabei immer absolut.
 
 ## Sense HAT Emulator
-Wird der Emulator verwendet, muss für alle Programme jeweils bei der Import Anweisung `sense_hat` mit `sense_emu` ersetzt werden.
-`from sense_emu import SenseHat`
+
+Wird der Emulator verwendet, muss für alle Programme jeweils bei der Import Anweisung `sense_hat` mit `sense_emu` ersetzt werden. `from sense_emu import SenseHat`
+
+## Auslesen Sensor
+``` python
+# Library importieren
+from sense_hat import SenseHat
+# erstellen des SenseHat Objektes
+sense = SenseHat()
+
+# einmaliges Auslesen der Beschleunigungswerte
+accel = sense.get_accelerometer_raw()
+# auslesen des Dicts
+print(f"Acceleration in X: {accel['x']}")
+print(f"Acceleration in Y: {accel['y']}")
+print(f"Acceleration in Z: {accel['z']}")
+```
+
+## Gyroskop (Drehratensensor)
+
+``` python
+gyro = sense.get_orientation()
+roll = gyro["roll"]
+pitch = gyro["pitch"]
+yaw = gyro["yaw"]
+```
+
+![](images/paste-18.png){width="402"}
+
+## Sensor Luftdruck, Luftfeuchtigkeit, Temperatur
+``` python
+from sense_hat import SenseHat
+sense = SenseHat()
+pressure = sense.get_pressure()
+temp = sense.get_temperature()
+hum = sense.get_humidity()
+print(f"Der Luftdruck beträgt {pressure :4.2f} mBar,
+        die aktuelle Temperatur liegt bei {temp :4.2f} °C,
+        die Feuchtigkeit ist {hum:1.2f}")
+```
+
+## Joystick
+So gibt es zb die `.stick.get_events()` Methode, welche eine Liste von vorgekommenen Joystick Bewegungen zurückgibt.
+`event = ( 'timestamp', 'direction', 'action')`
+timestamp: Zeitpunkt des Events
+direction: Richtung, in welche der Joystick gedrückt wurde
+action: Aktion (pressed, held, released)
+
+``` python
+while True:
+    for event in sense.stick.get_events():
+        print(event.direction, event.action)
+```

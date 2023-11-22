@@ -380,7 +380,7 @@ Abarbeitungsschema einer CASE-Anweisung:
 ::: callout-important
 Es muss ein Rückgabewert übergeben werden und muss zusätzlichen Speicher allozieren werden.
 :::
-## call by Refernce
+## call by Reference
 
 ``` scl
     VAR_IN_OUT

@@ -1,0 +1,44 @@
+# NumPy
+
+``` python
+import math as m
+
+m.pow(2,3)  #Potenz Funktion y=f(x) =𝑥^𝑛
+m.sqrt(4)   #Liefert die Wurzelfunktion y =√𝑥
+m.exp(3)    #Exponent Funktion y=f(x) =𝑒^𝑥
+m.pi        #Pi (3.1415…)
+
+import numpy as np
+
+np.power(2,3)
+np.sqrt(4)
+np.exp(2)
+np.pi
+```
+
+::: callout-important
+NumPy ist schneller als math, NumPy funktioniert besser mit Arrays.
+:::
+
+## Konstanten
+
+![](images/paste-11.png){width="715"} \## Trigonometrie Funktionen ![](images/paste-14.png){width="721"} \## Weitere Funktionen ![](images/paste-15.png){width="726"}
+
+![](images/paste-16.png){width="728"}
+
+## Statistics Modul
+
+``` python
+import statistics as stat 
+stat.mean(data)
+stat.stdev(data)
+stat.median(data)
+
+import numpy as np
+
+np.mean(data)
+np.std(data)
+np.median(data)
+```
+
+![](images/paste-17.png){width="374"}
