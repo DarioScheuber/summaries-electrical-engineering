@@ -23,7 +23,7 @@ def show_message(
         """
 ```
 
-![](images/paste-10.png){width="914"}
+![](images/paste-10.png){width="621"}
 
 ## clear()
 
@@ -67,6 +67,7 @@ Mit `.set_rotation()` kann das Bild auf der LED Matrix um 0, 90, 180 oder 270 Gr
 Wird der Emulator verwendet, muss für alle Programme jeweils bei der Import Anweisung `sense_hat` mit `sense_emu` ersetzt werden. `from sense_emu import SenseHat`
 
 ## Auslesen Sensor
+
 ``` python
 # Library importieren
 from sense_hat import SenseHat
@@ -93,6 +94,7 @@ yaw = gyro["yaw"]
 ![](images/paste-18.png){width="402"}
 
 ## Sensor Luftdruck, Luftfeuchtigkeit, Temperatur
+
 ``` python
 from sense_hat import SenseHat
 sense = SenseHat()
@@ -104,12 +106,26 @@ print(f"Der Luftdruck beträgt {pressure :4.2f} mBar,
         die Feuchtigkeit ist {hum:1.2f}")
 ```
 
+## Magnetfeldsensor
+
+Man kann mit dem SenseHat ebenfalls einen Magnetfeld-Sensor um ein Magnetfeld zu messen. Dieser Sensor eignet sich ideal, um das Natürliche Magnetfeld der Erde zu messen, um so einen Kompass zu programmieren.
+
+``` python
+ def get_compass(self):
+        """
+        Gets the direction of North from the magnetometer in degrees
+        """
+
+while True:
+    # read out sensor value
+    north = sense.get_compass()    # print the values
+    print(f"North is in {north:2.2f} deg ")    # sleep (optional)
+    time.sleep(0.5)
+```
+
 ## Joystick
-So gibt es zb die `.stick.get_events()` Methode, welche eine Liste von vorgekommenen Joystick Bewegungen zurückgibt.
-`event = ( 'timestamp', 'direction', 'action')`
-timestamp: Zeitpunkt des Events
-direction: Richtung, in welche der Joystick gedrückt wurde
-action: Aktion (pressed, held, released)
+
+So gibt es zb die `.stick.get_events()` Methode, welche eine Liste von vorgekommenen Joystick Bewegungen zurückgibt. `event = ( 'timestamp', 'direction', 'action')` timestamp: Zeitpunkt des Events direction: Richtung, in welche der Joystick gedrückt wurde action: Aktion (pressed, held, released)
 
 ``` python
 while True:

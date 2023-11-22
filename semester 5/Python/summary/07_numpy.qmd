@@ -22,9 +22,15 @@ NumPy ist schneller als math, NumPy funktioniert besser mit Arrays.
 
 ## Konstanten
 
-![](images/paste-11.png){width="715"} \## Trigonometrie Funktionen ![](images/paste-14.png){width="721"} \## Weitere Funktionen ![](images/paste-15.png){width="726"}
+![](images/paste-11.png){width="634"} 
 
-![](images/paste-16.png){width="728"}
+## Trigonometrie Funktionen 
+![](images/paste-14.png){width="636"}
+ 
+## Weitere Funktionen 
+![](images/paste-15.png){width="631"}
+
+![](images/paste-16.png){width="632"}
 
 ## Statistics Modul
 
