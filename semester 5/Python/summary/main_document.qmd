@@ -57,3 +57,4 @@ highlight-style: github
 {{< include 04_Datentypen.qmd >}}
 {{< include 05_Module.qmd >}}
 {{< include 06_Raspberry_Pi.qmd >}}
+{{< include 07_numpy.qmd >}}

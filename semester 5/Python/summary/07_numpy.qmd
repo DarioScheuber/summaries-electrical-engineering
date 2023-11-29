@@ -3,9 +3,9 @@
 ``` python
 import math as m
 
-m.pow(2,3)  #Potenz Funktion y=f(x) =𝑥^𝑛
-m.sqrt(4)   #Liefert die Wurzelfunktion y =√𝑥
-m.exp(3)    #Exponent Funktion y=f(x) =𝑒^𝑥
+m.pow(2,3)  #Potenz Funktion y=f(x) =x^n
+m.sqrt(4)   #Liefert die Wurzelfunktion y =wurzel(x)
+m.exp(3)    #Exponent Funktion y=f(x) =e^n
 m.pi        #Pi (3.1415…)
 
 import numpy as np
@@ -22,12 +22,14 @@ NumPy ist schneller als math, NumPy funktioniert besser mit Arrays.
 
 ## Konstanten
 
-![](images/paste-11.png){width="634"} 
+![](images/paste-11.png){width="634"}
 
-## Trigonometrie Funktionen 
+## Trigonometrie Funktionen
+
 ![](images/paste-14.png){width="636"}
- 
-## Weitere Funktionen 
+
+## Weitere Funktionen
+
 ![](images/paste-15.png){width="631"}
 
 ![](images/paste-16.png){width="632"}
@@ -48,3 +50,112 @@ np.median(data)
 ```
 
 ![](images/paste-17.png){width="374"}
+
+## Array
+
+![](images/paste-20.png){width="458"}
+
+``` python
+a = np.array([1, 2, 3, 4, 5, 6])    #1D Array    
+a = np.array([  [1, 2, 3, 4],       #2D Array
+                [5, 6, 7, 8],
+                [9, 10, 11, 12]])
+
+np.arange(12)           #[ 0 1 2 3 4 5 6 7 8 9 10 11]
+
+np.linspace(0, 5, 50)   #50 Werte von 0 bis 5, regelmässig verteilt
+```
+
+Mit endpoint=False/True kann angegeben werden, ob der Endwert in der Liste enthalten sein soll (True) oder nicht (False). Default ist endpoint = True `np.linspace(0, 5, 50, endpoint=False)`
+
+Weiteren Argumenten lässt sich der Start-(8) und Stoppwert(24), und die Schrittweite(3) definieren: `np.arange(8,24,3)`
+
+::: {layout-ncol="3" layout-valign="center"}
+![![](images/paste-23.png){width="251"}](images/paste-22.png){width="255"}
+
+![](images/paste-24.png){width="254"}
+:::
+
+### Grösse, Dimensionen und Form von Arrays
+
+`bsp_array.ndim` Gibt die Dimension retour `bsp_array.size` 3 \* 4 \* 5 Einträge `bsp_array.shape` Anzahl Rows (x), Columns (y) und Planes (z)
+
+### Slicing
+
+![](images/paste-25.png){width="566"}
+
+![](images/paste-26.png){width="565"}
+
+Jede weitere Dimension eines Arrays muss mit einem weiteren `,` oder `[ ]` indexiert (gesliced) werden
+
+#### Beispiele für Slicing
+
+![](images/paste-27.png){width="564"}
+
+### Filtern
+
+![](images/paste-29.png){width="551"}
+
+![](images/paste-31.png){width="546"}
+
+Numpy offeriert ebenfalls logische Verknüpfungen von Bool Arrays!
+
+``` python
+f1_and_f2 = np.logical_and(filter1,filter2)
+not_f1 = np.logical_not(filter1)
+f1_or_f2 = np.logical_or(filter1,filter2)
+f1_xor_f2 = np.logical_xor(filter1,filter2)
+```
+
+### Manipulieren
+
+Mit `.sort`, `.concatenate`, und `array.reshape()`, `array.transpose()`, `array.flip` können Arrays sortiert, aneinandergereiht, transponiert, umgekehrt oder umgeformt werden.
+
+![](images/paste-33.png){width="536"}
+
+![](images/paste-34.png){width="535"}
+
+![](images/paste-36.png){width="526"}
+
+![](images/paste-37.png){width="523"}
+
+#### vstack
+
+![](images/paste-38.png){width="518"}
+
+#### hstack
+
+![](images/paste-39.png){width="510"}
+
+#### dtack
+
+![](images/paste-40.png){width="505"}
+
+#### flatten
+
+Mit `.flatten()` lässt dich ein multidimensionales Array in ein 1D Array überführen
+
+#### concatenate
+
+Mit `.concatenate()` lassen Sich Arrays ebenfalls stapeln (\textbf{in alle Richtungen}) `np.concatenate((array_a, array_b), axis=0)` Mit \textbf{axis} kann definiert werden, in welche Richtung dass gestapelt wird.
+
+### Grundoperationen
+
+::: callout-important
+Alle Standard - Operationen sind immer Element Wise Aber Achtung – das Automatische Erweitern kann scheitern ! Trotzdem Dimensionen checken!!!
+:::
+
+#### Matrix Multiplikationen
+
+`np.matmul(data,data.T)` oder `data@data.T`
+
+### Suchen
+Mit `.where()` können Arrays durchsucht werden. 
+
+![](images/paste-42.png){width="497"}
+
+``` python
+data.max()
+data.min()
+data.sum()
+```
