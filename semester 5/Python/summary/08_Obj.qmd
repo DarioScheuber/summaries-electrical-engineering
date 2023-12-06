@@ -1,0 +1,48 @@
+# Objekt Orientiert
+
+``` python
+class Phone:
+    def __init__(self):
+        self.phone_nr
+        self.brand 
+        self.price 
+        self.storage: List[Phone]
+        self.banned: List[Phone]
+    def call(self, target):
+        if target in self.storage:
+            if self not in target.banned:
+                ...
+phone1 = Phone()
+phone2 = Phone()
+```
+
+Die `__init__` Methode wird genau gleich wie jede andere Methode auch mit def erstellt. Achtung die `__init__` Methode hat dabei jeweils zwei Unterstriche (\_) vor und nach dem Wort init.
+
+In der `__init__` Methode werden dann alle Parameter definiert, welche beim Erstellen gesetzt werden sollen.
+
+Die `__init__` Methode hat keinen Rückgabewert, da immer implizit ein Objekt der jeweiligen Klasse zurückgegeben wird.
+
+Mit `import copy` kann das Objekt mit call by value kopiert werden und mit normaler zuweisung `=` ist es nur call by refernce
+
+![](images/paste-44.png){width="623"}
+
+## Self
+
+Self zeigt immer zu den Parametern im jeweiligen Objekt. ![](images/paste-45.png){width="632"}
+
+## Privat
+
+::: callout-important
+Dafür gibt es die `__` (Dunder - Convention). Die Methoden & Parameter die mit `__` versehen sind, sind nur \textbf{INTERN} vom Objekt zugeifbar (via `self.__attribut` oder `self.__methode()` )!
+:::
+
+## Hints
+
+Dies hat es Python erlaubt, uns während dem Programmieren zu helfen. Sei dies mit: - Hinweisen - Auto-Complete Vorschlägen
+
+``` python
+def addition2(x:float,y:float)->float:
+    return x+y
+```
+
+![](images/paste-47.png){width="488"}
