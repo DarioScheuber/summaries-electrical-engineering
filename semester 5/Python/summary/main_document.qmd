@@ -59,3 +59,4 @@ highlight-style: github
 {{< include 06_Raspberry_Pi.qmd >}}
 {{< include 07_numpy.qmd >}}
 {{< include 08_Obj.qmd >}}
+{{< include 09_mathplot.qmd >}}

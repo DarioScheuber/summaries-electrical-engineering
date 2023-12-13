@@ -28,7 +28,9 @@ Mit `import copy` kann das Objekt mit call by value kopiert werden und mit norma
 
 ## Self
 
-Self zeigt immer zu den Parametern im jeweiligen Objekt. ![](images/paste-45.png){width="632"}
+Self zeigt immer zu den Parametern im jeweiligen Objekt.
+
+![](images/paste-45.png){width="632"}
 
 ## Privat
 

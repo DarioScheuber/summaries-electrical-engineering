@@ -1,0 +1,74 @@
+# Matplotlib
+
+importieren vom Lib `import matplotlib`
+
+## CSV (Comma Separated Values)
+
+``` python
+# Ein File öffnen with 
+open('csv_test.csv', 'w+', newline='\n') as csvfile:     
+writer = csv.writer(csvfile, delimiter=',')          
+#header schreiben     
+writer.writerow(["Measurements"])     
+# Daten - Row für Row schreiben     
+for row in data:         
+    writer.writerow([row])
+```
+
+`with open(‘path/to/file’, mode) as f:`
+
+![](images/paste-48.png)
+
+``` python
+with open('numpy_test.csv', 'a+', newline='\n') as file:
+    np.savetxt(fname=file,
+            X=data*10,
+            delimiter=",",               # Optional: Trennzeichen Definieren
+            fmt="%.8f")                  # Optional: Format definieren 
+                                         # Jetzt KEIN Header
+```
+
+### Alles auf einmal lesbar mit numpy
+
+``` python
+data_2 = np.genfromtxt(fname = "numpy_test.csv",            # Pfad zum File
+                       delimiter=",",                       # Trennzeichen
+                       skip_header=1)                       # Nr of Headers
+```
+
+### Row für Row lesen mit csv lib
+
+``` python
+# Ein File öffnen
+with open('csv_test.csv', 'r+', newline='\n') as csvfile:
+    reader = csv.reader(csvfile, delimiter=",")
+   # Skip the header (once for each line)
+    header = next(reader)
+    data_3 = []
+    for row in reader:
+        data_3.append(row)
+```
+
+## JSON (JavaScript Object Notation)
+
+Um die JSON lib zu importierten `import json`
+
+### Erstellen von JSON-File
+
+``` python
+with open('test.json', 'w+') as f:
+    json.dump(obj = dict_to_save,   # dict to save
+              fp=f,                 # file pointer (where to save)   
+              indent=4)             # Einschub von Nested - Dicts
+```
+
+### Lesen von JSON-File
+
+``` python
+with open('test.json') as json_file:
+    dict_from_json = json.load(json_file)
+```
+\pagebreak
+
+\includegraphics[page=1,angle=90,width=\textwidth]{doc/cheatsheet_matplotlib.pdf} \pagebreak
+\includegraphics[page=2,angle=90,width=\textwidth]{doc/cheatsheet_matplotlib.pdf}

@@ -159,3 +159,7 @@ data.max()
 data.min()
 data.sum()
 ```
+
+\pagebreak
+
+\includegraphics[page=1,angle=90,width=\textwidth]{doc/Numpy_Python_Cheat_Sheet.pdf}
