@@ -96,7 +96,7 @@ Jede weitere Dimension eines Arrays muss mit einem weiteren `,` oder `[ ]` index
 
 ![](images/paste-29.png){width="551"}
 
-![](images/paste-31.png){width="546"}
+![](images/paste-31.png){width="444"}
 
 Numpy offeriert ebenfalls logische Verknüpfungen von Bool Arrays!
 
@@ -111,25 +111,25 @@ f1_xor_f2 = np.logical_xor(filter1,filter2)
 
 Mit `.sort`, `.concatenate`, und `array.reshape()`, `array.transpose()`, `array.flip` können Arrays sortiert, aneinandergereiht, transponiert, umgekehrt oder umgeformt werden.
 
-![](images/paste-33.png){width="536"}
+![](images/paste-33.png){width="348"}
 
-![](images/paste-34.png){width="535"}
+![](images/paste-34.png){width="340"}
 
-![](images/paste-36.png){width="526"}
+![](images/paste-36.png){width="338"}
 
-![](images/paste-37.png){width="523"}
+![](images/paste-37.png){width="346"}
 
 #### vstack
 
-![](images/paste-38.png){width="518"}
+![](images/paste-38.png){width="344"}
 
 #### hstack
 
-![](images/paste-39.png){width="510"}
+![](images/paste-39.png){width="359"}
 
 #### dtack
 
-![](images/paste-40.png){width="505"}
+![](images/paste-40.png){width="348"}
 
 #### flatten
 
@@ -150,7 +150,8 @@ Alle Standard - Operationen sind immer Element Wise Aber Achtung – das Automat
 `np.matmul(data,data.T)` oder `data@data.T`
 
 ### Suchen
-Mit `.where()` können Arrays durchsucht werden. 
+
+Mit `.where()` können Arrays durchsucht werden.
 
 ![](images/paste-42.png){width="497"}
 
