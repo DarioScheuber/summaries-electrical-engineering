@@ -4,21 +4,37 @@ importieren vom Lib `import matplotlib`
 
 ## CSV (Comma Separated Values)
 
+### Mit CSV Lib
 ``` python
+import csv
 # Ein File öffnen with 
-open('csv_test.csv', 'w+', newline='\n') as csvfile:     
-writer = csv.writer(csvfile, delimiter=',')          
-#header schreiben     
-writer.writerow(["Measurements"])     
-# Daten - Row für Row schreiben     
-for row in data:         
-    writer.writerow([row])
+with open('csv_test.csv', 'w+', newline='\n') as csvfile:     
+    writer = csv.writer(csvfile, delimiter=',')          
+    #header schreiben     
+    writer.writerow(["Measurements"])     
+    # Daten - Row für Row schreiben     
+    for row in data:         
+        writer.writerow([row])
+```
+
+### Row für Row lesen mit csv lib
+
+``` python
+# Ein File öffnen
+with open('csv_test.csv', 'r+', newline='\n') as csvfile:
+    reader = csv.reader(csvfile, delimiter=",")
+   # Skip the header (once for each line)
+    header = next(reader)
+    data_3 = []
+    for row in reader:
+        data_3.append(row)
 ```
 
 `with open(‘path/to/file’, mode) as f:`
 
 ![](images/paste-48.png)
 
+### Mit numpy Lib
 ``` python
 with open('numpy_test.csv', 'a+', newline='\n') as file:
     np.savetxt(fname=file,
@@ -34,19 +50,6 @@ with open('numpy_test.csv', 'a+', newline='\n') as file:
 data_2 = np.genfromtxt(fname = "numpy_test.csv",            # Pfad zum File
                        delimiter=",",                       # Trennzeichen
                        skip_header=1)                       # Nr of Headers
-```
-
-### Row für Row lesen mit csv lib
-
-``` python
-# Ein File öffnen
-with open('csv_test.csv', 'r+', newline='\n') as csvfile:
-    reader = csv.reader(csvfile, delimiter=",")
-   # Skip the header (once for each line)
-    header = next(reader)
-    data_3 = []
-    for row in reader:
-        data_3.append(row)
 ```
 
 ## JSON (JavaScript Object Notation)

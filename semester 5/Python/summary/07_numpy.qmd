@@ -71,9 +71,9 @@ Mit endpoint=False/True kann angegeben werden, ob der Endwert in der Liste entha
 Weiteren Argumenten lässt sich der Start-(8) und Stoppwert(24), und die Schrittweite(3) definieren: `np.arange(8,24,3)`
 
 ::: {layout-ncol="3" layout-valign="center"}
-![![](images/paste-23.png){width="251"}](images/paste-22.png){width="255"}
+![![](images/paste-23.png){width="232"}](images/paste-22.png){width="231"}
 
-![](images/paste-24.png){width="254"}
+![](images/paste-24.png){width="237"}
 :::
 
 ### Grösse, Dimensionen und Form von Arrays
@@ -82,9 +82,9 @@ Weiteren Argumenten lässt sich der Start-(8) und Stoppwert(24), und die Schritt
 
 ### Slicing
 
-![](images/paste-25.png){width="566"}
+![](images/paste-25.png){width="429"}
 
-![](images/paste-26.png){width="565"}
+![](images/paste-26.png){width="431"}
 
 Jede weitere Dimension eines Arrays muss mit einem weiteren `,` oder `[ ]` indexiert (gesliced) werden
 
