@@ -9,13 +9,13 @@ Der Gültigkeitsbereich, auch \textbf{Scope} genannt, beschreibt in welchem Bere
 ## Funktionsaufruf
 
 ``` python
-    #Main programm
-    x = 10
-    y = foo(x)
+#Main programm
+x = 10
+y = foo(x)
 
-    #Funktion
-    def foo(n):
-        return n *10
+#Funktion
+def foo(n):
+    return n * 10
 ```
 
 ## Funktionsaufruf mit default Values
@@ -23,15 +23,15 @@ Der Gültigkeitsbereich, auch \textbf{Scope} genannt, beschreibt in welchem Bere
 Parameter können auch mit Default Werten versehen werden. Dies macht die betroffenen Parameter \textbf{optional}. Heisst wenn sie nicht beim Aufruf angegeben werden, wird der Default -- Wert verwendet.
 
 ``` python
-    #Main programm
-    x = 10
-    y = foo(x)          #gleiche auswirkung wie unten
-    y = foo(n=x)        #
+#Main programm
+x = 10
+y = foo(x)          #gleiche auswirkung wie unten
+y = foo(n=x)        #
 
-    #Funktion
-    def foo(n,word = "hello"):
-        print(word)
-        return n *10
+#Funktion
+def foo(n,word = "hello"):
+    print(word)
+    return n *10
 ```
 
 ## Funktionsaufruf mit Typehints
@@ -39,15 +39,15 @@ Parameter können auch mit Default Werten versehen werden. Dies macht die betrof
 Zudem ist es möglich, dem Interpreter zu sagen, was man für einen Datentyp man bei den verschiedenen Funktionsparametern erwartet. Dies kann man mit \textbf{:datatype} definieren
 
 ``` python
-    #Main programm
-    x = 10
-    y = foo(x)          #gleiche auswirkung wie unten
-    y = foo(n=x)        #
+#Main programm
+x = 10
+y = foo(x)          #gleiche auswirkung wie unten
+y = foo(n=x)        #
 
-    #Funktion
-    def foo(n:int,word:str = "hello"):
-        print(word)
-        return n *10
+#Funktion
+def foo(n:int,word:str = "hello"):
+    print(word)
+    return n *10
 ```
 
 ::: callout-important

@@ -5,15 +5,15 @@
 Eine einfache Variante um Ausgaben zu machen
 
 ``` python
-  print("Text")             #Text
-  print("Text1","Text2")    #Text1 Text2
-  print(10)                 #10
-  print("Text: ",10)        #Text: 10
+print("Text")             #Text
+print("Text1","Text2")    #Text1 Text2
+print(10)                 #10
+print("Text: ",10)        #Text: 10
 
-  name = "Hans"
-  alt = 18
-  print(f"Der {name} ist {alt} Jahre alt")
-  #Der Hans ist 18 Jahre alt
+name = "Hans"
+alt = 18
+print(f"Der {name} ist {alt} Jahre alt")
+#Der Hans ist 18 Jahre alt
 ```
 
 ## Variablen
@@ -21,10 +21,10 @@ Eine einfache Variante um Ausgaben zu machen
 Zuweisungen mit dem `=` Zeichen
 
 ``` python
-  x = 10                    #in x Wert 10 gespeichert
-  y = x                     #in y wird x gespeichert Wert 10
-  print(x,y)                #10 10
-  print("Text: ",10)        #Text: 10
+x = 10                    #in x Wert 10 gespeichert
+y = x                     #in y wird x gespeichert Wert 10
+print(x,y)                #10 10
+print("Text: ",10)        #Text: 10
 ```
 
 ::: callout-important
@@ -34,27 +34,27 @@ Können nur Buchstaben, Zahlen oder Unterstriche im namen verwendet werden. Zus�
 :::
 
 ``` python
-  x = 10                    #Integer (int) gerade Zahlen <class 'int'>
-  x = 11.5                  #Floating Point (float) gleitkomma Zahlen 
-                            #<class 'float'>
-  x = "Text"                #Zeichenketten (String) <class 'str'>
-  x = True                  #Boolscher Wert(Boolean) True/False <class 'bool'>
-  type(x)                   #gibt Typ zurück: <class 'bool'>
+x = 10                    #Integer (int) gerade Zahlen <class 'int'>
+x = 11.5                  #Floating Point (float) gleitkomma Zahlen 
+                          #<class 'float'>
+x = "Text"                #Zeichenketten (String) <class 'str'>
+x = True                  #Boolscher Wert(Boolean) True/False <class 'bool'>
+type(x)                   #gibt Typ zurück: <class 'bool'>
 ```
 
 ### Typen Umwandlung
 
 ``` python
-  x = 10                    #int: 10
-  int(x)                    #int: 10
-  float(x)                  #float : 10.0
-  str(x)                    #String: 10 
-  bool(x)                   #bool: True
+x = 10                    #int: 10
+int(x)                    #int: 10
+float(x)                  #float : 10.0
+str(x)                    #String: 10 
+bool(x)                   #bool: True
 
-  int(10.6)                 #int: 10 --> Kommawert wird abgeschnitten
-  bool(-4)                  #bool: True
-  bool(0)                   #bool: False
-  bool(0.0)                 #bool: False
+int(10.6)                 #int: 10 --> Kommawert wird abgeschnitten
+bool(-4)                  #bool: True
+bool(0)                   #bool: False
+bool(0.0)                 #bool: False
 ```
 
 ## Operatoren
@@ -71,13 +71,13 @@ Können nur Buchstaben, Zahlen oder Unterstriche im namen verwendet werden. Zus�
 | Bitwise XOR             | \^     |
 
 ``` python
-  print(2*2)                #4
-  print(2**3)               #8
-  print(1.0/2.0)            #0.5
-  print(1/2)                #0.5
-  print(16%5)               #1
-  print(7//2)               #3
-  print(1^3)                #0b1 ^ 0b11 = 0b10 = 2
+print(2*2)                #4
+print(2**3)               #8
+print(1.0/2.0)            #0.5
+print(1/2)                #0.5
+print(16%5)               #1
+print(7//2)               #3
+print(1^3)                #0b1 ^ 0b11 = 0b10 = 2
 ```
 
 ::: callout-note
@@ -87,9 +87,9 @@ Alle Division wurden in Python mit Float realisiert
 ## Zahlenformate
 
 ``` python
-  print(bin(10))            #Binär: 0b1010
-  print(oct(10))            #Oktal: 0o12
-  print(hex(10))            #Hexadezimal: 0xa
+print(bin(10))            #Binär: 0b1010
+print(oct(10))            #Oktal: 0o12
+print(hex(10))            #Hexadezimal: 0xa
 ```
 
 ## Strings
@@ -97,13 +97,13 @@ Alle Division wurden in Python mit Float realisiert
 In Python sind Strings mit Doppelten- `"Text"` und Einfachen-Anführungszeichen `'Text'` realisiert.
 
 ``` python
-  print("Text1"+"Text2")    #Text1Text2
-  print("Text1","Text2")    #Text1 Text2
-  print("Text"*5)           #TextTextTextTextText
-  print("Text\tText")       #Text Text
-  print("Text\nText")       #Text
-                            #Text
-  print("\U0001f600")       #Unicode: :) (Smile)
+print("Text1"+"Text2")    #Text1Text2
+print("Text1","Text2")    #Text1 Text2
+print("Text"*5)           #TextTextTextTextText
+print("Text\tText")       #Text Text
+print("Text\nText")       #Text
+                          #Text
+print("\U0001f600")       #Unicode: :) (Smile)
 ```
 
 | Sonderzeichen | Befehl |
@@ -119,9 +119,9 @@ In Python sind Strings mit Doppelten- `"Text"` und Einfachen-Anführungszeichen 
 Mit dem r Vorzeichen wird der nachfolgende String genau so Interpretiert.
 
 ``` python
-  print(r'C:\some\name')    #C:\some\name
-  print('C:\some\name')     #C:\some
-                            #ame
+print(r'C:\some\name')    #C:\some\name
+print('C:\some\name')     #C:\some
+                          #ame
 ```
 
 ### Zeichenliterale
@@ -129,14 +129,14 @@ Mit dem r Vorzeichen wird der nachfolgende String genau so Interpretiert.
 Zeichenliterale sind Strings, welche die Einrückungen etc. übernehmen.
 
 ``` python
-  print(""" 
-  Usage: Text[options]
-        -t
-        -h Host
-  """)                      #
-                            #Usage: Text[options]
-                            #      -t
-                            #      -h Host
+print(""" 
+Usage: Text[options]
+      -t
+      -h Host
+""")                      #
+                          #Usage: Text[options]
+                          #      -t
+                          #      -h Host
 ```
 
 ### Indexieren von Strings
@@ -146,26 +146,26 @@ Strings werden mit folgender notations Indexiert: \<Stringname\>\[\<start\>:\<st
 :::
 
 ``` python
-  word = "Hello this is a Test"
-  print(word[0])            #H
-  print(word[1])            #e
-  print(word[2])            #l
-  print(word[3])            #l
-  print(word[4])            #o
-  
-  print(word[0:5])          #Hello
-  print(word[5:9])          # thi
-  print(word[5: ])          # this is a Test
-  print(word[ :10])         #Hello this
+word = "Hello this is a Test"
+print(word[0])            #H
+print(word[1])            #e
+print(word[2])            #l
+print(word[3])            #l
+print(word[4])            #o
 
-  print(word[::2])          #Hloti saTs
-  print(word[0:10:2])       #Hloti
+print(word[0:5])          #Hello
+print(word[5:9])          # thi
+print(word[5: ])          # this is a Test
+print(word[ :10])         #Hello this
 
-  print(word[-5:])          # Test
-  print(word[5:-1])         # this is a Tes
-  print(word[::-1])         #tseT a si siht olleH
-  print("Hello" in word)    #True
-  print(leng("Test"))       #4
+print(word[::2])          #Hloti saTs
+print(word[0:10:2])       #Hloti
+
+print(word[-5:])          # Test
+print(word[5:-1])         # this is a Tes
+print(word[::-1])         #tseT a si siht olleH
+print("Hello" in word)    #True
+print(len("Test"))       #4
 ```
 ### String Funktionen
 Alle Strings unterstützen auch einige \textbf{String – eigene Funktionen}.
@@ -182,5 +182,4 @@ string_path.split("//")
 last_folder = string_path.split("//")[-1]
 #'folder'
 string_path.count("//")     #8
-
 ```

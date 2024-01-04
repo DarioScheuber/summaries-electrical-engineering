@@ -55,16 +55,6 @@
   {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}:{}$} l}}
   {\end{tabular}\par\vspace{\belowdisplayskip}}
 
-% Used for pandoc code block generations.
-% Introduces breaklines for overflowing code blocks, by defining the Highlighting environment with breakline & symbol.
-% Don't know what commandchars does :)
-\usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-  breaklines,
-  breaksymbolleft={\textcolor{gray}{\scriptsize\ensuremath\hookrightarrow}},
-  commandchars=\\\{\}
-}
-
 % stylized section headings!
 \let\paragraph\oldparagraph
 \let\subparagraph\oldsubparagraph

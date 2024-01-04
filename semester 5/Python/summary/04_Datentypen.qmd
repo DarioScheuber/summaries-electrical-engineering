@@ -59,7 +59,11 @@ Eigenschaften:
 
 ### Tuples
 
-Tuples sind eine geordnete Sequenz von Elementen und verfügt deswegen über alle standard Sequenz-Funktionalitäten. Ein Tuple wird mit normalen Klammern ( ) definiert. ::: callout-note Ein Tuple Elemente von verschiedenen Datentypen besitzen. Klammern sind optional. :::
+Tuples sind eine geordnete Sequenz von Elementen und verfügt deswegen über alle standard Sequenz-Funktionalitäten. Ein Tuple wird mit normalen Klammern ( ) definiert. 
+
+::: callout-note 
+Ein Tuple Elemente von verschiedenen Datentypen besitzen. Klammern sind optional. 
+:::
 
 ``` python
 x = 1
@@ -185,7 +189,7 @@ Die `.copy()` Methode erzeugt ein neues Objekt im Speicher und weist die neue Va
 def add_to_list(item, list_to_add:list=None):
     if list_to_add is None:
         list_to_add = []
-    ist_to_add.append(item)
+    list_to_add.append(item)
 
     return list_to_add
 ```

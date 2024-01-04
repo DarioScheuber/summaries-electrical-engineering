@@ -84,9 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="if-statement" class="level2">
 <h2 class="anchored" data-anchor-id="if-statement">IF-Statement</h2>
 <p>Das <code>if</code>-Statement wird ausgeführt soblad das die condition true ist</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> condition <span class="op">==</span> <span class="dv">10</span>:           <span class="co">#Wenn condition gleich </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                                <span class="co">#10 ist dann</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Text1"</span>,<span class="st">"Text2"</span>)      <span class="co">#Text1 Text2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condition <span class="op">==</span> <span class="dv">10</span>:           <span class="co">#Wenn condition gleich </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="co">#10 ist dann</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Text1"</span>,<span class="st">"Text2"</span>)      <span class="co">#Text1 Text2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table">
 <thead>
 <tr class="header">
@@ -125,24 +125,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="if---elif---else-statement" class="level2">
 <h2 class="anchored" data-anchor-id="if---elif---else-statement">if - elif - else Statement</h2>
 <p>Bei mehreren <code>if</code>-Statements wird jedes einzelne überprüft auch wenn eines <code>True</code> war. Das <code>elif</code>- oder <code>else</code>-Statement wird nur ausgeführt, wenn das <code>if</code>-Statement <code>false</code> war.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">10</span>:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x kleiner als 10"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> x <span class="op">&gt;</span> <span class="dv">10</span>:</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x grösser als 10"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:                         <span class="co">#Wenn kein Statement True ist</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x ist 10"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"x kleiner als 10"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> x <span class="op">&gt;</span> <span class="dv">10</span>:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"x grösser als 10"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:                         <span class="co">#Wenn kein Statement True ist</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"x ist 10"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="verknüpfen-von-bedingungen" class="level2">
 <h2 class="anchored" data-anchor-id="verknüpfen-von-bedingungen">Verknüpfen von Bedingungen</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> x <span class="kw">and</span> y                   <span class="co">#False</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> x <span class="kw">or</span> y                    <span class="co">#True</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> <span class="kw">not</span> y                     <span class="co">#True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="kw">and</span> y                   <span class="co">#False</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="kw">or</span> y                    <span class="co">#True</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="kw">not</span> y                     <span class="co">#True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="image/and-or-not.png" class="img-fluid" alt="And-Or-Not Verknüpfungen"></p>
 </section>
 <section id="ablaufdiagramm-flussdiagramm" class="level2">
 <h2 class="anchored" data-anchor-id="ablaufdiagramm-flussdiagramm">Ablaufdiagramm / Flussdiagramm</h2>
+<p>Ein Ablauf- oder Flussdiagramm kann verwendet werden den Prozess /Ablauf eines Algorithmus, Programms, etc. graphisch zu beschreiben.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -177,6 +178,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+</section>
+<section id="while-schleife" class="level2">
+<h2 class="anchored" data-anchor-id="while-schleife">While-Schleife</h2>
+<p>Die <code>while</code> Schleife kann verwendet werden, um einen Code Block mehrfach auszuführen, bis eine bestimmte Bedingung eingetreten ist.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)                    <span class="co">#0\n 1\n 2\n 3\n 4\n ...</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:                   <span class="co">#Endlosschleife</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Endlosschleife"</span>)     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="continue" class="level3">
+<h3 class="anchored" data-anchor-id="continue">continue</h3>
+<p>: Wenn continue aufgerufen wird, wird der des Code Blockes und es beginnt ein neuer Durchlauf der Schleife</p>
+</section>
+<section id="break" class="level3">
+<h3 class="anchored" data-anchor-id="break">break</h3>
+<p>: Wenn break aufgerufen wird, wird die sofort .</p>
+</section>
+</section>
+<section id="for-schleife" class="level2">
+<h2 class="anchored" data-anchor-id="for-schleife">For-Schleife</h2>
+<p>For in Python wird etwas anders behandelt als in anderen Programmiersprachen. In Python wird for verwendet, um zu bearbeiten.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elem <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(elem)                 <span class="co">#0\n 1\n 2\n 3\n 4\n ... </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="st">"Word"</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(c)                    <span class="co">#W\n o\n r\n d\n</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>]:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)                    <span class="co">#1\n 3\n 5\n   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="range" class="level3">
+<h3 class="anchored" data-anchor-id="range">range</h3>
+<p>: produziert eine Sequenz von (default 0) bis zu dem eingegebenen Wert (10).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))               <span class="co">#0,1,2,....9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="enumerate" class="level3">
+<h3 class="anchored" data-anchor-id="enumerate">enumerate</h3>
+<p> gibt einen Index einer Iterable. <code>enumerate</code> liefert dazu ein Tuple (zwei Werte). Diese Werte sind index und Element von einer Iterablen.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,elem <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="st">"word"</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">th letter is a </span><span class="sc">{</span>elem<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#0th letter is a w</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#1th letter is a o</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#2th letter is a r</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#3th letter is a d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="zip" class="level3">
+<h3 class="anchored" data-anchor-id="zip">zip</h3>
+<p> um gleichzeitig zwei oder mehr gleichlange Listen zu iterieren. <code>zip</code> aggregiert Element für Element von mehreren Iterables und gibt jeweils ein Tuple mit einem Element von allen Iterables zurück. <img src="image/zip.png" class="img-fluid" alt="zip Iteration"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elem1,elem2 <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],<span class="st">"hello"</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; <span class="bu">print</span>(elem1,elem2)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#1 h</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#2 e</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#3 l</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#4 l</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#5 o</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+zip-Länge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>zip gibt nur so lange Tuples aus, wie alle Iterables Elemente haben.</p>
+</div>
+</div>
+</section>
+<section id="zip-und-enumerate" class="level3">
+<h3 class="anchored" data-anchor-id="zip-und-enumerate">zip und enumerate</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, tup <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(word_1,word_2)):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">th letters of words are: </span><span class="sc">{</span>tup[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> </span><span class="ch">\t</span><span class="ss"> </span><span class="sc">{</span>tup[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+zip und enumerate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn zip und enumerate gleichzeitig angewendet werden, werden leider NICHT 3 Werte zurückgegeben, sondern 1 Index und 1 Tuple (2 Werte) zurückgegeben.</p>
+</div>
+</div>
+</section>
 </section>
 </section>
 

@@ -16,6 +16,7 @@ format:
     template-partials:
       - config/title.tex
       - config/before-body.tex # for custom title page
+    output-file: "ZF_Python_Dario_Scheuber"
 
 source:
   github:
@@ -24,10 +25,10 @@ source:
 
 # [DOCUMENT CONFIGURATION] ============================
 geometry: 
-- "top=25mm"
-- "bottom=25mm"
-- "left=25mm"
-- "right=25mm"
+- "top=20mm"
+- "bottom=20mm"
+- "left=20mm"
+- "right=20mm"
 papersize: a4
 fontsize: 10pt
 
@@ -48,6 +49,20 @@ pagenumbering: none # since a selfmade solution is used
 highlight-style: github
 ---
 
+```{=latex}
+% keep this to have smaller code blocks
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[
+  colback={shadecolor},
+  boxrule=0pt,
+  left=3pt,
+  right=3pt,
+  top=3pt,
+  bottom=3pt,
+  frame hidden,
+  enhanced,
+  breakable
+]}{\end{tcolorbox}}\fi
+```
 
 
 <!-- [Chapters] -->
