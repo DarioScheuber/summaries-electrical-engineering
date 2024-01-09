@@ -42,7 +42,7 @@ code-block-bg: "#f7f7f7"
 
 toc: true
 toc-depth: 3
-number-sections: false
+number-sections: true
 
 pagenumbering: none # since a selfmade solution is used
 
