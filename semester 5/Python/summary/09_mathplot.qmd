@@ -74,4 +74,16 @@ with open('test.json') as json_file:
 \pagebreak
 
 \includegraphics[page=1,angle=90,width=\textwidth]{doc/cheatsheet_matplotlib.pdf} \pagebreak
-\includegraphics[page=2,angle=90,width=\textwidth]{doc/cheatsheet_matplotlib.pdf}
+\includegraphics[page=2,angle=90,width=\textwidth]{doc/cheatsheet_matplotlib.pdf} \pagebreak
+\includegraphics[page=1,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=2,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=3,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=4,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=5,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=6,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=7,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=8,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=9,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf} \pagebreak
+\includegraphics[page=10,angle=0,width=\textwidth]{doc/cheatsheet_plots.pdf}
+
+
