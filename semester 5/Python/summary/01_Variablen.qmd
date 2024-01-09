@@ -1,5 +1,9 @@
 # Variablen
 
+## Datentypen
+
+![](images/paste-49.png){width="553"}
+
 ## Ausgabe
 
 Eine einfache Variante um Ausgaben zu machen
@@ -167,7 +171,9 @@ print(word[::-1])         #tseT a si siht olleH
 print("Hello" in word)    #True
 print(len("Test"))       #4
 ```
+
 ### String Funktionen
+
 Alle Strings unterstützen auch einige \textbf{String – eigene Funktionen}.
 
 ``` python
