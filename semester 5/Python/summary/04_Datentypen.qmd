@@ -305,7 +305,10 @@ Falls gleichzeitig geprüft werden soll: ob ein Key existiert, was für einen We
 
 Gibt den Wert von «Robert» zurück, erstellt dieses Key-Value-Pair mit Default Value falls nicht vorhanden
 :::
-
+### .append(value)
+``` python
+    my_dict["key1"].append("Robert") 
+```
 ### .pop(key, default_return)
 
 Die .pop(key) Methode kann verwendet werden, um den Wert eines Keys zu erhalten und diesen Key zu löschen.
