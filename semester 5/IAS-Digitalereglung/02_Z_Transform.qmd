@@ -1,3 +1,0 @@
-# The z-Transform
-
-![](images/IAS\Z-Transformation.png){fig-align="center"}
